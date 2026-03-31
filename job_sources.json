@@ -14,6 +14,11 @@
       "type": "playwright"
     },
     {
+      "name": "Two Nice",
+      "url": "https://twonice.hire.trakstar.com/",
+      "type": "career_page"
+    },
+    {
       "name": "Oxide Computer Company",
       "url": "https://oxide.computer/careers",
       "type": "career_page",
