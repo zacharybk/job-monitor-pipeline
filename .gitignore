@@ -1,0 +1,27 @@
+# Secrets
+.env
+
+# Personal profile (gitignored — use profile.example.md as template)
+profile.md
+
+# Runtime state (lives in Supabase)
+seen_jobs.json
+
+# Output files
+all_jobs.csv
+matches/
+job_monitor.log
+pipeline.log
+page_debug.html
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Internal
+plans/
+discovered_sources.json
+Job monitor updates March 2026.md
+job_search.md

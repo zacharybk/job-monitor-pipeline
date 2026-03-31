@@ -1,0 +1,2952 @@
+{
+  "filters": {
+    "title_keywords": [
+      "customer",
+      "support",
+      "success",
+      "cx"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Startups Gallery",
+      "url": "https://startups.gallery/jobs",
+      "type": "playwright"
+    },
+    {
+      "name": "Oxide Computer Company",
+      "url": "https://oxide.computer/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Railway",
+      "url": "https://railway.com/careers#open-positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "AirBNB",
+      "url": "https://careers.airbnb.com/positions/?_search_input=customer&_where_you_work=united-states%2Cnevada-united-states%2Carizona-united-states%2Ccolorado-united-states%2Cdc-united-states%2Csan-francisco-united-states&_workplace_type=live-and-work-anywhere&_jobs_sort=updated_at",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "AirBNB Community Support",
+      "url": "https://careers.airbnb.com/positions/?_departments=community-support&_where_you_work=united-states%2Cnevada-united-states&_workplace_type=live-and-work-anywhere&_jobs_sort=updated_at",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "AirBNB Community Support",
+      "url": "https://careers.airbnb.com/positions/?_departments=community-support&_where_you_work=united-states%2Cnevada-united-states&_workplace_type=live-and-work-anywhere&_jobs_sort=updated_at",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "AirBNB Operations",
+      "url": "https://careers.airbnb.com/positions/?_departments=operations&_where_you_work=united-states%2Cnevada-united-states%2Carizona-united-states%2Ccolorado-united-states%2Cdc-united-states%2Csan-francisco-united-states&_workplace_type=live-and-work-anywhere",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "CloudX",
+      "url": "https://jobs.gem.com/cloudx",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Duna",
+      "url": "https://jobs.ashbyhq.com/duna",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Adaption",
+      "url": "https://jobs.ashbyhq.com/adaption",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "ElevenLabs",
+      "url": "https://elevenlabs.io/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Positron",
+      "url": "https://www.positron.ai/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Kindred",
+      "url": "https://jobs.ashbyhq.com/kindred",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Ambrook",
+      "url": "https://ambrook.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Day",
+      "url": "https://day.ai/company",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Modular",
+      "url": "https://www.modular.com/company/careers#open-roles",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Paid",
+      "url": "https://paid.ai/about-us",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Edia",
+      "url": "https://edia.app/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Formance",
+      "url": "https://www.ycombinator.com/companies/formance/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Dub",
+      "url": "https://dub.co/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "DualEntry",
+      "url": "https://careers.dualentry.com/open-positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "DualBird",
+      "url": "https://www.dualbird.io/careers#open-positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Driver",
+      "url": "https://www.driver.ai/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Draftwise",
+      "url": "https://www.draftwise.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Doubleword",
+      "url": "https://www.doubleword.ai/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Dotwork",
+      "url": "https://dotwork.com/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Ditto (Words)",
+      "url": "https://www.dittowords.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Default",
+      "url": "https://jobs.ashbyhq.com/withdefault",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Daylight Security",
+      "url": "https://www.comeet.com/jobs/daylightsecurity/7A.00D",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "CuspAI",
+      "url": "https://jobs.ashbyhq.com/cuspai",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Cube",
+      "url": "https://cube.dev/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "CoPlane",
+      "url": "https://coplane.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Converge Bio",
+      "url": "https://converge-bio.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Composer",
+      "url": "https://investcomposer.notion.site/Careers-at-Composer-c075d377c74741c5ac69db98ea7bc6b0",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Clover Security",
+      "url": "https://clover.security/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Clay (Earth)",
+      "url": "https://clay.earth/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Chronicle",
+      "url": "https://chroniclehq.notion.site/Careers-at-Chronicle-054eda0b5b684423b5f7685a8a648ae1#054eda0b5b684423b5f7685a8a648ae1",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Causal Labs",
+      "url": "https://app.dover.com/jobs/causallabs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Cartwheel",
+      "url": "https://getcartwheel.com/company",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Cal.com",
+      "url": "https://cal.com/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Warp",
+      "url": "https://job-boards.greenhouse.io/warp",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Campfire",
+      "url": "https://jobs.ashbyhq.com/campfire",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "RobCo",
+      "url": "https://www.rob.co/en-us/company/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Bronto",
+      "url": "https://www.bronto.io/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Browser Use",
+      "url": "https://browser-use.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Boardy",
+      "url": "https://www.linkedin.com/company/boardy/jobs/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Upwind",
+      "url": "https://www.upwind.io/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Blok",
+      "url": "https://joinblok.notion.site/Open-Roles-at-Blok-21c5df33b374800da3d2de6fb065eb96?source=copy_link",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Blaze",
+      "url": "https://careers.kula.ai/blaze",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Bird",
+      "url": "https://bird.com/en-us/careers#roles",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Bezi",
+      "url": "https://www.bezi.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Better Stack",
+      "url": "https://betterstack.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Beehiiv",
+      "url": "https://careers.beehiiv.com/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Basedash",
+      "url": "https://www.linkedin.com/company/basedash/jobs/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Aurasell",
+      "url": "https://www.aurasell.ai/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Augment Market",
+      "url": "https://jobs.augment.market/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Atlas Data Storage",
+      "url": "https://ats.rippling.com/atlas-data-storage/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "AstroForge",
+      "url": "https://www.astroforge.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Artisan",
+      "url": "https://www.artisan.co/careers/#form",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Arcol",
+      "url": "https://www.arcol.io/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Archetype",
+      "url": "https://careers.kula.ai/archetype-ai",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Apheris",
+      "url": "https://apheris.jobs.personio.de/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Anaconda",
+      "url": "https://www.anaconda.com/about-us/careers/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Alterego",
+      "url": "https://www.alterego.io/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Alma",
+      "url": "https://www.alma.food/build-with-us",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Agora",
+      "url": "https://www.agora.xyz/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Aetherflux",
+      "url": "https://www.aetherflux.com/#careers-anchor",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "1Money",
+      "url": "https://www.1moneynetwork.com/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": ".txt",
+      "url": "https://jobs.ashbyhq.com/dottxt",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "&Open",
+      "url": "https://open.jobs.personio.com/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Terradot",
+      "url": "https://jobs.ashbyhq.com/terradot",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "WithCoverage",
+      "url": "https://job-boards.greenhouse.io/withcoverage",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Motif",
+      "url": "https://jobs.lever.co/motifsystems",
+      "type": "lever",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Baseten",
+      "url": "https://www.baseten.co/careers/#join-our-team",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "OpenEvidence",
+      "url": "https://www.openevidence.com/about",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Warp (HR)",
+      "url": "https://jobs.ashbyhq.com/warp",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Surge",
+      "url": "https://www.surgehq.ai/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Moderne",
+      "url": "https://www.moderne.ai/about",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "RunPod",
+      "url": "https://job-boards.greenhouse.io/runpod",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Crux",
+      "url": "https://www.cruxclimate.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Keycard",
+      "url": "https://jobs.ashbyhq.com/keycard-labs",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Cradle",
+      "url": "https://jobs.ashbyhq.com/cradlebio",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "TigerEye (Acquired by Lennar)",
+      "url": "https://jobs.ashbyhq.com/TigerEye",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "MagicSchool",
+      "url": "https://jobs.ashbyhq.com/magicschool",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Distributional",
+      "url": "https://www.distributional.com/careers#career-openings",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Mytra",
+      "url": "https://mytra.ai/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Periodic Labs",
+      "url": "https://jobs.ashbyhq.com/periodic-labs",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Deepgram",
+      "url": "https://deepgram.com/careers#careers-job-listing-section",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Fly.io",
+      "url": "https://fly.io/jobs/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Civic Roundtable",
+      "url": "https://jobs.ashbyhq.com/Civic%20Roundtable",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Glide",
+      "url": "https://www.glideapps.com/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Torq",
+      "url": "https://job-boards.greenhouse.io/torq",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "TRM Labs",
+      "url": "https://www.trmlabs.com/careers-list",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Hightouch",
+      "url": "https://hightouch.com/careers#open-positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Sunrise Robotics",
+      "url": "https://sunriserobotics.co/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "RemoFirst",
+      "url": "https://www.remofirst.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Loop (Returns)",
+      "url": "https://www.loopreturns.com/careers/#positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Rain",
+      "url": "https://jobs.ashbyhq.com/rain",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Truffle Security",
+      "url": "https://job-boards.greenhouse.io/trufflesecurity",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Primer",
+      "url": "https://jobs.ashbyhq.com/primer.io",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Mem0",
+      "url": "https://jobs.ashbyhq.com/mem0",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Haus",
+      "url": "https://jobs.ashbyhq.com/haus",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Sauron Systems",
+      "url": "https://www.sauron.systems/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Wonderful",
+      "url": "https://www.wonderful.ai/about-us",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Enveda",
+      "url": "https://jobs.lever.co/enveda",
+      "type": "lever",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Parable",
+      "url": "https://jobs.ashbyhq.com/parable",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Spellbook",
+      "url": "https://www.spellbook.legal/careers#open-roles",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Hummingbird",
+      "url": "https://job-boards.greenhouse.io/hummingbirdregtech",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Red Queen Bio",
+      "url": "https://www.redqueen.bio/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Fabric",
+      "url": "https://jobs.gem.com/fabrichealth",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Sweatpals",
+      "url": "https://jobs.ashbyhq.com/sweatpals",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Truemed",
+      "url": "https://www.truemed.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Ditto",
+      "url": "https://jobs.ashbyhq.com/ditto",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "OpenHands",
+      "url": "https://allhandsai.applytojob.com/apply/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Clarify",
+      "url": "https://jobs.ashbyhq.com/clarify",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Counsel Health",
+      "url": "https://jobs.ashbyhq.com/counsel",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Trigger.dev",
+      "url": "https://jobs.ashbyhq.com/triggerdev",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Loonen",
+      "url": "https://loonen.com/pages/about-us",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Inngest",
+      "url": "https://jobs.ashbyhq.com/inngest",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Echo",
+      "url": "https://www.comeet.com/jobs/echosoftware/9A.006",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Nokken",
+      "url": "https://www.the-nokken.com/contact-us",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Popcorn",
+      "url": "https://careers.popcorn.space/apply",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "GC AI",
+      "url": "https://jobs.ashbyhq.com/general-counsel-ai",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "PolyAI",
+      "url": "https://poly.ai/careers/#open-roles",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "AbnormalAI",
+      "url": "https://abnormal.ai/careers/open-roles",
+      "type": "career_page",
+      "source_list": "linkedin"
+    },
+    {
+      "name": "Runware",
+      "url": "https://apply.workable.com/runware/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Anrok",
+      "url": "https://jobs.ashbyhq.com/anrok",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Oboe",
+      "url": "https://oboe.fyi/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Unconventional AI",
+      "url": "https://unconv.ai/careers/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "fal",
+      "url": "https://fal.ai/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Verse",
+      "url": "https://jobs.ashbyhq.com/versemedical",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Operate",
+      "url": "https://operate-so.notion.site/hiring",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "OpenRouter",
+      "url": "https://jobs.ashbyhq.com/openrouter",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Humble",
+      "url": "https://humbleops.ai/about",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Delve",
+      "url": "https://jobs.ashbyhq.com/delve",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Quilt",
+      "url": "https://job-boards.greenhouse.io/quilt",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Fin",
+      "url": "https://jobs.ashbyhq.com/fin",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Supper",
+      "url": "https://www.supper.co/company",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Metronome (Acquired by Stripe)",
+      "url": "https://job-boards.greenhouse.io/metronome",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Junction",
+      "url": "https://jobs.ashbyhq.com/junction",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Synthflow",
+      "url": "https://jobs.ashbyhq.com/synthflow",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Firecrawl",
+      "url": "https://jobs.ashbyhq.com/firecrawl",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Bluefish",
+      "url": "https://job-boards.greenhouse.io/bluefishai",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Framer",
+      "url": "https://www.framer.com/careers/#positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Wander",
+      "url": "https://www.wander.com/about#careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Response",
+      "url": "https://jobs.ashbyhq.com/response",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Grafana Labs",
+      "url": "https://grafana.com/about/careers/open-positions/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Format",
+      "url": "https://useformat.ai/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Watershed",
+      "url": "https://watershed.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Eon",
+      "url": "https://job-boards.eu.greenhouse.io/eonio",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Tenzai",
+      "url": "https://www.tenzai.com/#manifesto",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Nous Research",
+      "url": "https://nousresearch.com/careers/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Sunflower Labs",
+      "url": "https://sunflower-labs.com/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Tailor",
+      "url": "https://www.ycombinator.com/companies/tailor/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Function Health",
+      "url": "https://jobs.gem.com/function-health",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Doppel",
+      "url": "https://jobs.ashbyhq.com/Doppel",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Orion",
+      "url": "https://www.orionsleep.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Flex",
+      "url": "https://jobs.lever.co/Flex/",
+      "type": "lever",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Great Question",
+      "url": "https://jobs.ashbyhq.com/greatquestion",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Span",
+      "url": "https://www.span.app/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "M0",
+      "url": "https://www.m0.org/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Medusa",
+      "url": "https://medusajs.com/careers/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Reka AI",
+      "url": "https://jobs.ashbyhq.com/Reka",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "mymind",
+      "url": "https://mymind.com/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Clerk",
+      "url": "https://jobs.ashbyhq.com/clerk",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Chronograph",
+      "url": "https://www.chronograph.pe/jobs/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Numeral",
+      "url": "https://jobs.ashbyhq.com/Numeral",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Gigs",
+      "url": "https://gigs.com/careers#positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Langdock",
+      "url": "https://jobs.ashbyhq.com/langdock",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Sweet Security",
+      "url": "https://www.sweet.security/career#Open-positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Magic Patterns",
+      "url": "https://jobs.ashbyhq.com/magicpatterns",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Beside",
+      "url": "https://www.beside.com/careers#join-us",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Quo",
+      "url": "https://jobs.gem.com/quo",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Scribe",
+      "url": "https://scribe.com/careers#JobOpenings",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Fastino",
+      "url": "https://jobs.ashbyhq.com/fastino-ai",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Liminary",
+      "url": "https://liminary.notion.site/Liminary-Founding-Product-Marketer-2a4684f2b13b80e39927e61f45d69e97",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Stedi",
+      "url": "https://jobs.ashbyhq.com/Stedi",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Cocoon",
+      "url": "https://www.cocoon.com/careers#open-positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Flint (K12)",
+      "url": "https://flintk12.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "WellTheory",
+      "url": "https://welltheory.notion.site/Work-at-WellTheory-f4e6aad0b3a9444aa96082023236d23e",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Tekeskope",
+      "url": "https://www.teleskope.ai/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Lettuce",
+      "url": "https://lettuce.co/about",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Flank",
+      "url": "https://jobs.ashbyhq.com/flankai",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Headlight",
+      "url": "https://jobs.lever.co/headlight.health",
+      "type": "lever",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Sanity",
+      "url": "https://www.sanity.io/careers#openPositions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "The Network",
+      "url": "https://www.signa.software/about",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Kick",
+      "url": "https://ats.rippling.com/kick/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Neko",
+      "url": "https://jobs.lever.co/nekohealth",
+      "type": "lever",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Speakeasy",
+      "url": "https://jobs.ashbyhq.com/Speakeasy",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Sublime Security",
+      "url": "https://jobs.ashbyhq.com/sublime-security",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Mosey",
+      "url": "https://jobs.ashbyhq.com/mosey",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Poolside",
+      "url": "https://poolside.ai/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "VoidZero",
+      "url": "https://voidzero.dev/team",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Vizcom",
+      "url": "https://jobs.ashbyhq.com/vizcom",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Rerun",
+      "url": "https://rerun.io/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Loti",
+      "url": "https://ats.rippling.com/loti-ai-inc/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Ona",
+      "url": "https://ona.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Vesence",
+      "url": "https://www.vesence.com/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Music AI",
+      "url": "https://moises.bamboohr.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Sanas",
+      "url": "https://ats.rippling.com/sanas/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "DeepJudge",
+      "url": "https://jobs.lever.co/DeepJudge",
+      "type": "lever",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Tensormesh",
+      "url": "https://www.tensormesh.ai/about",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Unstructured",
+      "url": "https://unstructured.io/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Graza",
+      "url": "https://apply.workable.com/graza",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Spline",
+      "url": "https://www.ycombinator.com/companies/spline/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Lumana",
+      "url": "https://www.lumana.ai/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Infisical",
+      "url": "https://jobs.ashbyhq.com/infisical",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Chainguard",
+      "url": "https://www.chainguard.dev/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "ShopMy",
+      "url": "https://job-boards.greenhouse.io/shopmy",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Nooks",
+      "url": "https://jobs.ashbyhq.com/nooks",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Starbridge",
+      "url": "https://jobs.ashbyhq.com/starbridge",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Good Start Labs",
+      "url": "https://goodstartlabs.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Replicate",
+      "url": "https://replicate.com/about#join-us",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Comulate",
+      "url": "https://jobs.ashbyhq.com/comulate",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Pulley",
+      "url": "https://job-boards.greenhouse.io/pulley",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Finch (Legal)",
+      "url": "https://www.finchlegal.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Zed",
+      "url": "https://jobs.ashbyhq.com/zed",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Privy",
+      "url": "https://www.privy.io/careers#open-positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Sentient",
+      "url": "https://jobs.ashbyhq.com/sentient",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Pienso",
+      "url": "https://www.linkedin.com/company/pienso-us/jobs/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Fragment",
+      "url": "https://fragment.dev/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Found",
+      "url": "https://jobs.ashbyhq.com/found",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Owner",
+      "url": "https://www.owner.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Mainstay",
+      "url": "https://jobs.ashbyhq.com/mainstay",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Natural Cycles",
+      "url": "https://career.naturalcycles.com/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Anara",
+      "url": "https://jobs.ashbyhq.com/anara",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Mastra",
+      "url": "https://mastra.ai/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "n8n",
+      "url": "https://n8n.io/careers/#job-board",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Seso",
+      "url": "https://job-boards.greenhouse.io/sesolabor",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Quilter",
+      "url": "https://jobs.ashbyhq.com/quilter?weekdayJdUid=102821",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Paper",
+      "url": "https://paper.design/#careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Filigran",
+      "url": "https://www.welcometothejungle.com/en/companies/filigran/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "webAI",
+      "url": "https://www.webai.com/company#careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Mem",
+      "url": "https://jobs.ashbyhq.com/mem.ai",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Osmind",
+      "url": "https://jobs.lever.co/Osmind",
+      "type": "lever",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Prime Intellect",
+      "url": "https://jobs.ashbyhq.com/PrimeIntellect",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Supabase",
+      "url": "https://supabase.com/careers#positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Dash0",
+      "url": "https://jobs.ashbyhq.com/dash0",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Framework",
+      "url": "https://ats.rippling.com/framework/jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "PostHog",
+      "url": "https://posthog.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Polars",
+      "url": "https://pola.rs/careers/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Truv",
+      "url": "https://jobs.lever.co/truv",
+      "type": "lever",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Paradigm Health",
+      "url": "https://job-boards.greenhouse.io/paradigminccareersopenpositions",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Instant",
+      "url": "https://www.linkedin.com/company/tryinstant/jobs/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Polycam",
+      "url": "https://job-boards.greenhouse.io/polycamcareers",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Numan",
+      "url": "https://jobs.eu.lever.co/numan",
+      "type": "lever",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Imbue",
+      "url": "https://imbue.com/careers/#open-roles",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Scrunch",
+      "url": "https://jobs.ashbyhq.com/scrunch-ai",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Edera",
+      "url": "https://jobs.lever.co/edera",
+      "type": "lever",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Divine",
+      "url": "https://jobs.ashbyhq.com/DivineResearch?utm_source=divine.inc",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Plain",
+      "url": "https://jobs.ashbyhq.com/plain",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Allium",
+      "url": "https://jobs.ashbyhq.com/allium",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Polar",
+      "url": "https://jobs.ashbyhq.com/polar",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Turnkey",
+      "url": "https://jobs.ashbyhq.com/turnkey",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Light",
+      "url": "https://light.inc/careers#positions",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Manifest",
+      "url": "https://www.manifested.com/careers#listing",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "ORO",
+      "url": "https://www.getoro.xyz/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Seed",
+      "url": "https://seed.com/join-us/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Ghost",
+      "url": "https://careers.ghost.org/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Jump",
+      "url": "https://jobs.ashbyhq.com/Jump",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "RadiantGraph",
+      "url": "https://radiantgraph.com/About/Careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Eli Health",
+      "url": "https://jobs.ashbyhq.com/eli",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Axiom",
+      "url": "https://axiom.co/company#jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Loyal",
+      "url": "https://job-boards.greenhouse.io/loyal36",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Salt",
+      "url": "https://www.linkedin.com/company/getsalt-ai/jobs/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "The Routing Company",
+      "url": "https://theroutingcompany.com/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Tembo",
+      "url": "https://www.notion.so/tembo-io/Tembo-Job-Board-2647c9367d6a8051a6b4dfb31d2d7673?source=copy_link",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Rayon",
+      "url": "https://www.rayon.design/team#jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Tandem",
+      "url": "https://jobs.ashbyhq.com/tandem",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Stable",
+      "url": "https://app.dover.com/Stable/careers/3ef7232b-f2c4-4e1a-bbd3-6f37289831db",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Ordo",
+      "url": "https://careers.ordo.com/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Midday",
+      "url": "https://midday.ai/story",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Sonder",
+      "url": "https://sonder.inc/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Parabol",
+      "url": "https://parabol.fi/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "OpenPay",
+      "url": "https://www.getopenpay.com/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Langbase",
+      "url": "https://langbase.com/about",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "GitBook",
+      "url": "https://jobs.ashbyhq.com/gitbook/59e70590-34bc-4d17-8eaf-a56f9db97596",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Wiza",
+      "url": "https://wellfound.com/company/wizaco",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Lithic",
+      "url": "https://job-boards.greenhouse.io/lithic",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Colossal",
+      "url": "https://colossal.com/careers/",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Partiful",
+      "url": "https://jobs.ashbyhq.com/partiful",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Aleph",
+      "url": "https://jobs.ashbyhq.com/aleph",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Rec",
+      "url": "https://app.dover.com/jobs/rec",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Sway",
+      "url": "https://swaythefuture.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Tessl",
+      "url": "https://jobs.ashbyhq.com/tesslcareers",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Orchids",
+      "url": "https://grove-jelly-78f.notion.site/Work-at-Orchids-22b0af79f8e4800998d7ea5f902455e4",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Felt",
+      "url": "https://felt.com/careers",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Prismic",
+      "url": "https://prismic.io/jobs#jobs",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "For Operators",
+      "url": "https://www.foroperators.com/jobs?*_equal=customer",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Eudia",
+      "url": "https://job-boards.greenhouse.io/eudia",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Tollbit",
+      "url": "https://job-boards.greenhouse.io/tollbit",
+      "type": "greenhouse",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Pogo",
+      "url": "https://joinpogo.notion.site/Come-join-us-at-Pogo-24afd1425ef84b1aaef36930ae09db08",
+      "type": "career_page",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Central",
+      "url": "https://jobs.ashbyhq.com/centralhq",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Tracer",
+      "url": "https://jobs.ashbyhq.com/tracer",
+      "type": "ashby",
+      "source_list": "startups.gallery"
+    },
+    {
+      "name": "Perplexity",
+      "url": "https://jobs.ashbyhq.com/perplexity",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Synctera",
+      "url": "https://job-boards.greenhouse.io/synctera",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Charlie Health",
+      "url": "https://job-boards.greenhouse.io/charliehealth",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Mercor",
+      "url": "https://jobs.ashbyhq.com/mercor",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Thinking Machines Lab",
+      "url": "https://job-boards.greenhouse.io/thinkingmachines",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Inworld AI",
+      "url": "https://jobs.ashbyhq.com/inworld-ai",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "David",
+      "url": "https://job-boards.greenhouse.io/david",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Fireworks AI",
+      "url": "https://job-boards.greenhouse.io/fireworksai",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Grow Therapy",
+      "url": "https://job-boards.greenhouse.io/growtherapy",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "ElevenLabs",
+      "url": "https://jobs.ashbyhq.com/elevenlabs",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Harvey",
+      "url": "https://jobs.ashbyhq.com/harvey",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Chainguard",
+      "url": "https://job-boards.greenhouse.io/chainguard",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Common Room",
+      "url": "https://jobs.ashbyhq.com/commonroom",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "The Nuclear Company",
+      "url": "https://job-boards.greenhouse.io/thenuclearcompany",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Zip",
+      "url": "https://jobs.ashbyhq.com/zip",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Together AI",
+      "url": "https://job-boards.greenhouse.io/togetherai",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Midi Health",
+      "url": "https://jobs.ashbyhq.com/midi-health",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Solace",
+      "url": "https://jobs.ashbyhq.com/solace",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Drata",
+      "url": "https://jobs.ashbyhq.com/drata",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "tvScientific",
+      "url": "https://job-boards.greenhouse.io/tvscientific",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Ambience Healthcare",
+      "url": "https://jobs.ashbyhq.com/ambiencehealthcare",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Phantom",
+      "url": "https://jobs.ashbyhq.com/phantom",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Artisan",
+      "url": "https://jobs.ashbyhq.com/artisan",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Lumos",
+      "url": "https://job-boards.greenhouse.io/lumos",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Truveta",
+      "url": "https://job-boards.greenhouse.io/truveta",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Federato",
+      "url": "https://job-boards.greenhouse.io/federato",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Dandy",
+      "url": "https://jobs.ashbyhq.com/dandy",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Edia",
+      "url": "https://jobs.ashbyhq.com/edia",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Merge",
+      "url": "https://job-boards.greenhouse.io/merge",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "ARB Interactive",
+      "url": "https://jobs.ashbyhq.com/arb-interactive",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Retell AI",
+      "url": "https://jobs.ashbyhq.com/retell-ai",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Replit",
+      "url": "https://jobs.ashbyhq.com/replit",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Exa",
+      "url": "https://jobs.ashbyhq.com/exa",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Vast.ai",
+      "url": "https://job-boards.greenhouse.io/vastai",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "CodeRabbit",
+      "url": "https://jobs.ashbyhq.com/coderabbit",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "PostHog",
+      "url": "https://jobs.ashbyhq.com/posthog",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Ideogram",
+      "url": "https://jobs.ashbyhq.com/ideogram",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Apollo",
+      "url": "https://job-boards.greenhouse.io/apollo",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Deepgram",
+      "url": "https://jobs.ashbyhq.com/deepgram",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Juicebox",
+      "url": "https://jobs.ashbyhq.com/juicebox",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Customer.io",
+      "url": "https://job-boards.greenhouse.io/customerio",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "LangChain",
+      "url": "https://jobs.ashbyhq.com/langchain",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Supabase",
+      "url": "https://jobs.ashbyhq.com/supabase",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Lindy",
+      "url": "https://jobs.ashbyhq.com/lindy",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Granola",
+      "url": "https://jobs.ashbyhq.com/granola",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Gamma",
+      "url": "https://jobs.ashbyhq.com/gamma",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Vercel",
+      "url": "https://job-boards.greenhouse.io/vercel",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Linear",
+      "url": "https://jobs.ashbyhq.com/linear",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "ClickHouse",
+      "url": "https://job-boards.greenhouse.io/clickhouse",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Anima",
+      "url": "https://jobs.ashbyhq.com/anima",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Sentry",
+      "url": "https://jobs.ashbyhq.com/sentry",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Assembled",
+      "url": "https://jobs.ashbyhq.com/assembledhq",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "StackBlitz",
+      "url": "https://job-boards.greenhouse.io/stackblitz",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "AssemblyAI",
+      "url": "https://job-boards.greenhouse.io/assemblyai",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Fathom",
+      "url": "https://jobs.ashbyhq.com/fathom",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Attio",
+      "url": "https://jobs.ashbyhq.com/attio",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Alchemy",
+      "url": "https://job-boards.greenhouse.io/alchemy",
+      "type": "greenhouse",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Runway",
+      "url": "https://jobs.ashbyhq.com/runway",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Apify",
+      "url": "https://jobs.ashbyhq.com/apify",
+      "type": "ashby",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Mistral AI",
+      "url": "https://jobs.lever.co/mistral",
+      "type": "lever",
+      "source_list": "linkedin/brex"
+    },
+    {
+      "name": "Andreessen Horowitz (a16z)",
+      "url": "https://jobs.a16z.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Sequoia Capital",
+      "url": "https://jobs.sequoiacap.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Accel",
+      "url": "https://jobs.accel.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Kleiner Perkins",
+      "url": "https://jobs.kpcb.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Greylock Partners",
+      "url": "https://jobs.greylock.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Lightspeed Venture Partners",
+      "url": "https://jobs.lsvp.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Bessemer Venture Partners",
+      "url": "https://jobs.bvp.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "General Catalyst",
+      "url": "https://jobs.generalcatalyst.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Index Ventures",
+      "url": "https://jobs.indexventures.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Khosla Ventures",
+      "url": "https://jobs.khoslaventures.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Battery Ventures",
+      "url": "https://jobs.battery.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "New Enterprise Associates (NEA)",
+      "url": "https://jobs.nea.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Founders Fund",
+      "url": "https://foundersfund.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Tiger Global",
+      "url": "https://www.tigerglobal.com/careers",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Coatue Management",
+      "url": "https://www.coatue.com/careers",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Insight Partners",
+      "url": "https://www.insightpartners.com/careers",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Softbank Vision Fund",
+      "url": "https://www.softbank.jp/en/corp/recruit/",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "GV (Google Ventures)",
+      "url": "https://www.gv.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Intel Capital",
+      "url": "https://www.intelcapital.com/careers/",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Salesforce Ventures",
+      "url": "https://www.salesforceventures.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Microsoft M12",
+      "url": "https://m12.vc/careers",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Qualcomm Ventures",
+      "url": "https://www.qualcommventures.com/careers",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Y Combinator",
+      "url": "https://www.ycombinator.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Antler",
+      "url": "https://jobs.antler.co/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Techstars",
+      "url": "https://jobs.techstars.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "500 Global (500 Startups)",
+      "url": "https://jobs.500.co/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "First Round Capital",
+      "url": "https://jobs.firstround.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Union Square Ventures (USV)",
+      "url": "https://jobs.usv.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Benchmark",
+      "url": "https://benchmark.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Spark Capital",
+      "url": "https://jobs.sparkcapital.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Redpoint Ventures",
+      "url": "https://jobs.redpoint.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "IVP (Institutional Venture Partners)",
+      "url": "https://jobs.ivp.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Norwest Venture Partners",
+      "url": "https://jobs.nvp.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Mayfield Fund",
+      "url": "https://jobs.mayfield.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Social Capital",
+      "url": "https://jobs.socialcapital.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Forerunner Ventures",
+      "url": "https://jobs.forerunnerventures.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Lux Capital",
+      "url": "https://jobs.luxcapital.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Obvious Ventures",
+      "url": "https://jobs.obviousventures.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "CRV (Charles River Ventures)",
+      "url": "https://jobs.crv.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Felicis Ventures",
+      "url": "https://jobs.felicis.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Initialized Capital",
+      "url": "https://jobs.initialized.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Cowboy Ventures",
+      "url": "https://jobs.cowboy.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Greycroft",
+      "url": "https://jobs.greycroft.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Highland Capital Partners",
+      "url": "https://jobs.hcp.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "True Ventures",
+      "url": "https://jobs.trueventures.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "NextView Ventures",
+      "url": "https://jobs.nextview.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Eniac Ventures",
+      "url": "https://jobs.eniac.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Notation Capital",
+      "url": "https://jobs.notation.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Collaborative Fund",
+      "url": "https://jobs.collaborativefund.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Crosscut Ventures",
+      "url": "https://jobs.crosscut.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Mucker Capital",
+      "url": "https://jobs.mucker.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Upfront Ventures",
+      "url": "https://jobs.upfront.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Homebrew",
+      "url": "https://jobs.homebrew.co/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Root Ventures",
+      "url": "https://jobs.root.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Amplify Partners",
+      "url": "https://jobs.amplifypartners.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Uncork Capital",
+      "url": "https://jobs.uncork.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Foothill Ventures",
+      "url": "https://jobs.foothill.ventures/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Playground Global",
+      "url": "https://careers.playground.global/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Contrary Capital",
+      "url": "https://jobs.contrary.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Pear VC",
+      "url": "https://jobs.pear.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "8VC",
+      "url": "https://jobs.8vc.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "645 Ventures",
+      "url": "https://jobs.645ventures.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "25Madison",
+      "url": "https://jobs.25madison.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Panoramic Ventures",
+      "url": "https://jobs.panoramic.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Goodwater Capital",
+      "url": "https://portfoliojobs.goodwatercap.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "SOSV",
+      "url": "https://techjobs.sosv.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Anthemis Group",
+      "url": "https://jobs.anthemis.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "At One Ventures",
+      "url": "https://jobs.atoneventures.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "77 (MIT Fund)",
+      "url": "https://jobs.77.xyz/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Balderton Capital",
+      "url": "https://jobs.balderton.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Atomico",
+      "url": "https://jobs.atomico.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Northzone",
+      "url": "https://jobs.northzone.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Earlybird",
+      "url": "https://jobs.earlybird.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "HV Capital",
+      "url": "https://jobs.hvcapital.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Point Nine Capital",
+      "url": "https://jobs.pointnine.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Cherry Ventures",
+      "url": "https://jobs.cherry.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Project A Ventures",
+      "url": "https://jobs.project-a.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Seedcamp",
+      "url": "https://jobs.seedcamp.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "LocalGlobe",
+      "url": "https://jobs.localglobe.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Mosaic Ventures",
+      "url": "https://jobs.mosaicventures.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Octopus Ventures",
+      "url": "https://jobs.octopusventures.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Partech",
+      "url": "https://jobs.partech.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Vista Equity Partners",
+      "url": "https://www.vistaequitypartners.com/careers/",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Warburg Pincus",
+      "url": "https://www.warburgpincus.com/careers/",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Francisco Partners",
+      "url": "https://www.franciscopartners.com/about/careers",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Silver Lake",
+      "url": "https://www.silverlake.com/careers",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Summit Partners",
+      "url": "https://www.summitpartners.com/careers",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Riverwood Capital",
+      "url": "https://www.riverwoodcapital.com/careers",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Precursor Ventures",
+      "url": "https://jobs.precursorvc.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Wonder Ventures",
+      "url": "https://jobs.wondervc.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Hustle Fund",
+      "url": "https://jobs.hustlefund.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Backstage Capital",
+      "url": "https://jobs.backstagecapital.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Harlem Capital",
+      "url": "https://jobs.harlemcapital.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Kapor Capital",
+      "url": "https://jobs.kaporcapital.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Plexo Capital",
+      "url": "https://www.plexocap.com/careers",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "BITKRAFT Ventures",
+      "url": "https://jobs.bitkraft.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Lerer Hippeau",
+      "url": "https://jobs.lererhippeau.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "RRE Ventures",
+      "url": "https://jobs.rre.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Brooklyn Bridge Ventures",
+      "url": "https://www.brooklynbridge.vc/portfolio#jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "RTP Global",
+      "url": "https://jobs.rtp.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Conductive Ventures",
+      "url": "https://jobs.conductive.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Costanoa Ventures",
+      "url": "https://jobs.costanoa.vc/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "OVF (Oregon Venture Fund)",
+      "url": "https://jobs.oregonvf.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "CEAS Investments",
+      "url": "https://jobs.ceasinvestments.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Powerhouse Ventures",
+      "url": "https://jobs.powerhouse.fund/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Footprint Coalition",
+      "url": "https://www.footprintcoalition.com/ventures",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Congruent Ventures",
+      "url": "https://jobs.congruentvc.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "AngelList",
+      "url": "https://angel.co/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "SV Angel",
+      "url": "https://svangel.com/portfolio",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Ron Conway / SV Angel",
+      "url": "https://svangel.com",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Mike Maples / Floodgate",
+      "url": "https://jobs.floodgate.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Jobs in VC (Getro aggregator)",
+      "url": "https://jobsinvc.getro.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Getro Community Board",
+      "url": "https://community.getro.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "VC Stack Job Board",
+      "url": "https://www.vcstack.com/job",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Venture Capital Careers",
+      "url": "https://venturecapitalcareers.com/",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "John Gannon VC Jobs",
+      "url": "https://johngannonblog.com/",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "VC Platform Job Board",
+      "url": "https://www.vcplatform.com/jobs",
+      "type": "vc_job_board",
+      "source_list": "vc_job_boards"
+    },
+    {
+      "name": "Cohere",
+      "url": "https://jobs.ashbyhq.com/cohere",
+      "type": "ashby",
+      "source_list": "manual"
+    },
+    {
+      "name": "Tailscale",
+      "url": "https://tailscale.com/careers#open-job-positions",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "CoreWeave / Weights & Biases",
+      "url": "https://coreweave.com/careers/weights-biases",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "Aha!",
+      "url": "https://www.aha.io/company/careers/current-openings",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "Hubstaff",
+      "url": "https://hubstaff.com/jobs#hsds-open-positions",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "Toptal Careers",
+      "url": "https://www.toptal.com/careers#positions",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "Toptal Freelance Jobs",
+      "url": "https://www.toptal.com/freelance-jobs",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "Hex",
+      "url": "https://hex.tech/careers/",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "Splice",
+      "url": "https://job-boards.greenhouse.io/splice",
+      "type": "greenhouse",
+      "source_list": "manual"
+    },
+    {
+      "name": "Teleport",
+      "url": "https://goteleport.com/careers/",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "LaunchDarkly",
+      "url": "https://launchdarkly.com/careers/",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "Coder",
+      "url": "https://jobs.ashbyhq.com/Coder",
+      "type": "ashby",
+      "source_list": "manual"
+    },
+    {
+      "name": "Pulumi",
+      "url": "https://www.pulumi.com/careers/",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "Miro",
+      "url": "https://miro.com/careers/open-positions/",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "Krisp",
+      "url": "https://krisp.ai/careers/#job_listings",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "dbt Labs",
+      "url": "https://www.getdbt.com/about-us/careers#roles",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "We Work Remotely - Customer (US)",
+      "url": "https://weworkremotely.com/remote-jobs/search?term=customer&country[]=US",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "TestGorilla",
+      "url": "https://www.testgorilla.com/careers/#jobs",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "Temporal",
+      "url": "https://temporal.io/careers#become-a-temporalite",
+      "type": "career_page",
+      "source_list": "manual"
+    }
+  ],
+  "manual_check": []
+}
