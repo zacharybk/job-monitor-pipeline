@@ -13,6 +13,9 @@ SUPABASE_SERVICE_KEY = os.environ["SUPABASE_SERVICE_KEY"]
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 SCORING_MODEL     = "claude-haiku-4-5-20251001"
 
+# ── Healthchecks.io ───────────────────────────────────────────────────────────
+HEALTHCHECK_URL = os.getenv("HEALTHCHECK_URL", "")  # optional
+
 # ── Pipeline tuning ───────────────────────────────────────────────────────────
 MAX_SCRAPE_WORKERS = 2    # parallel Playwright browsers
 ENRICH_BATCH_SIZE  = 100  # jobs to enrich per run

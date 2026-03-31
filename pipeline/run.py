@@ -11,11 +11,23 @@ Job Monitor Pipeline — four phases per run:
 Run:   python -m pipeline.run
 Cron:  0 14,20 * * *  (10am + 4pm EST)
 """
+import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from playwright.sync_api import sync_playwright
 
 from pipeline import config
+
+
+def _ping(suffix: str = "") -> None:
+    """Ping healthchecks.io. Silently no-ops if HEALTHCHECK_URL is not set."""
+    if not config.HEALTHCHECK_URL:
+        return
+    try:
+        url = config.HEALTHCHECK_URL.rstrip("/") + (f"/{suffix}" if suffix else "")
+        urllib.request.urlopen(url, timeout=5)
+    except Exception:
+        pass  # never let monitoring break the pipeline
 from pipeline.db import (
     get_client, get_seen_hashes, add_seen_hashes,
     get_sources, upsert_jobs, mark_relevant,
@@ -177,12 +189,18 @@ def main():
     print(f"Job Monitor Pipeline — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print(f"{'='*60}")
 
-    client   = get_client()
-    all_jobs = phase1_scrape(client)
-    phase2_filter(client, all_jobs)
-    phase3_enrich(client)
-    phase4_score(client)
+    _ping("start")
+    try:
+        client   = get_client()
+        all_jobs = phase1_scrape(client)
+        phase2_filter(client, all_jobs)
+        phase3_enrich(client)
+        phase4_score(client)
+    except Exception as e:
+        _ping("fail")
+        raise
 
+    _ping()  # success
     print(f"\n{'='*60}")
     print("Pipeline complete.")
     print(f"{'='*60}\n")
