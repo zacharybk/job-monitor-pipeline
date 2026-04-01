@@ -28,7 +28,7 @@ def add_seen_hashes(client: Client, hashes: list[str]) -> None:
     """Insert new url_hashes into seen_jobs (ignore conflicts)."""
     if not hashes:
         return
-    rows = [{"url_hash": h} for h in hashes]
+    rows = [{"url_hash": h} for h in set(hashes)]
     for i in range(0, len(rows), 500):
         client.table("seen_jobs").upsert(
             rows[i:i+500], on_conflict="url_hash"
