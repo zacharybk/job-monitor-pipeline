@@ -56,9 +56,11 @@ def migrate_sources():
     ]
     total = 0
     for i in range(0, len(rows), 500):
-        client.table("sources").insert(rows[i:i+500]).execute()
+        client.table("sources").upsert(
+            rows[i:i+500], on_conflict="url", ignore_duplicates=True
+        ).execute()
         total += len(rows[i:i+500])
-    print(f"Migrated {total} sources")
+    print(f"Migrated {total} sources (skipped existing)")
 
 
 if __name__ == "__main__":

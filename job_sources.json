@@ -2951,6 +2951,48 @@
       "url": "https://temporal.io/careers#become-a-temporalite",
       "type": "career_page",
       "source_list": "manual"
+    },
+    {
+      "name": "Little Bird",
+      "url": "https://jobs.gem.com/littlebird",
+      "type": "career_page",
+      "source_list": "manual"
+    },
+    {
+      "name": "Swarm Aero",
+      "url": "https://job-boards.greenhouse.io/swarmaero",
+      "type": "greenhouse",
+      "source_list": "manual"
+    },
+    {
+      "name": "Beautiful.ai",
+      "url": "https://job-boards.greenhouse.io/beautifulai",
+      "type": "greenhouse",
+      "source_list": "manual"
+    },
+    {
+      "name": "Halcyon",
+      "url": "https://job-boards.greenhouse.io/halcyon",
+      "type": "greenhouse",
+      "source_list": "manual"
+    },
+    {
+      "name": "Candex",
+      "url": "https://www.candex.com/careers#ashby_embed",
+      "type": "ashby",
+      "source_list": "manual"
+    },
+    {
+      "name": "Condor",
+      "url": "https://jobs.ashbyhq.com/condor-software",
+      "type": "ashby",
+      "source_list": "manual"
+    },
+    {
+      "name": "Turquoise Health",
+      "url": "https://turquoise.health/careers#open-positions",
+      "type": "career_page",
+      "source_list": "manual"
     }
   ],
   "manual_check": []
