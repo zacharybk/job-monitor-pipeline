@@ -74,6 +74,17 @@ def upsert_jobs(client: Client, jobs: list[dict]) -> int:
     return total
 
 
+def get_unfiltered_jobs(client: Client) -> list[dict]:
+    """All jobs not yet marked relevant (across all time)."""
+    result = (
+        client.table("jobs")
+        .select("url_hash, title, location")
+        .eq("relevant", False)
+        .execute()
+    )
+    return result.data or []
+
+
 def mark_relevant(client: Client, url_hashes: list[str]) -> None:
     """Set relevant=true on jobs that passed the pre-filter."""
     if not url_hashes:
@@ -105,8 +116,10 @@ def save_description(client: Client, url_hash: str, description: str) -> None:
     }).eq("url_hash", url_hash).execute()
 
 
+SCORE_CUTOFF_DATE = "2026-03-31"
+
 def get_jobs_to_score(client: Client, limit: int = 100) -> list[dict]:
-    """Enriched jobs that have no score yet."""
+    """Enriched jobs that have no score yet, added on or after SCORE_CUTOFF_DATE."""
     result = (
         client.table("jobs")
         .select("id, url_hash, title, company, location, description")
@@ -114,6 +127,7 @@ def get_jobs_to_score(client: Client, limit: int = 100) -> list[dict]:
         .not_.is_("enriched_at", "null")
         .is_("scored_at", "null")
         .eq("is_active", True)
+        .gte("date_added", SCORE_CUTOFF_DATE)
         .limit(limit)
         .execute()
     )

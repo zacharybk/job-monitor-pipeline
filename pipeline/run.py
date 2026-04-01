@@ -31,7 +31,7 @@ def _ping(suffix: str = "") -> None:
 from pipeline.db import (
     get_client, get_seen_hashes, add_seen_hashes,
     get_sources, upsert_jobs, mark_relevant,
-    get_jobs_to_enrich, save_description,
+    get_unfiltered_jobs, get_jobs_to_enrich, save_description,
     get_jobs_to_score, save_score, job_hash,
 )
 from pipeline.filters import is_relevant
@@ -106,17 +106,18 @@ def phase1_scrape(client) -> list[dict]:
 
 # ── Phase 2 ───────────────────────────────────────────────────────────────────
 
-def phase2_filter(client, all_jobs: list[dict]) -> None:
-    """Mark relevant=true on jobs passing the pre-filter."""
-    print(f"\n[Phase 2] Filtering {len(all_jobs)} jobs for relevance...")
+def phase2_filter(client) -> None:
+    """Mark relevant=true on unfiltered jobs (DB-driven, all time)."""
+    jobs = get_unfiltered_jobs(client)
+    print(f"\n[Phase 2] Filtering {len(jobs)} unfiltered jobs...")
     relevant_hashes = [
-        job_hash(j["url"])
-        for j in all_jobs
-        if j.get("url") and is_relevant(j.get("title", ""), j.get("location", ""))
+        j["url_hash"]
+        for j in jobs
+        if is_relevant(j.get("title", ""), j.get("location", ""))
     ]
     mark_relevant(client, relevant_hashes)
     print(f"  Marked {len(relevant_hashes)} jobs as relevant "
-          f"({len(all_jobs) - len(relevant_hashes)} filtered out)")
+          f"({len(jobs) - len(relevant_hashes)} filtered out)")
 
 
 # ── Phase 3 ───────────────────────────────────────────────────────────────────
@@ -192,8 +193,8 @@ def main():
     _ping("start")
     try:
         client   = get_client()
-        all_jobs = phase1_scrape(client)
-        phase2_filter(client, all_jobs)
+        phase1_scrape(client)
+        phase2_filter(client)
         phase3_enrich(client)
         phase4_score(client)
     except Exception as e:
