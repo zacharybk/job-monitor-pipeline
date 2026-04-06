@@ -33,7 +33,7 @@ echo "=== Connecting (one auth prompt) ==="
 $SSH $SERVER "echo Connected"
 
 echo "=== Installing system dependencies ==="
-$SSH $SERVER "apt-get update -qq && apt-get install -y python3 python3-pip python3-venv git -qq"
+$SSH $SERVER "apt-get update -qq && apt-get install -y python3 python3-pip python3-venv git nginx -qq"
 
 echo "=== Cloning / updating repo ==="
 $SSH $SERVER "
@@ -44,8 +44,9 @@ $SSH $SERVER "
   fi
 "
 
-echo "=== Copying .env (secrets) ==="
+echo "=== Copying .env and profile.md ==="
 $SCP .env $SERVER:$REMOTE_DIR/
+$SCP profile.md $SERVER:$REMOTE_DIR/
 
 echo "=== Installing Python dependencies ==="
 $SSH $SERVER "
@@ -56,6 +57,11 @@ $SSH $SERVER "
   playwright install chromium &&
   playwright install-deps chromium
 "
+
+echo "=== Deploying review UI ==="
+$SCP review.html $SERVER:/var/www/html/review.html
+$SSH $SERVER "systemctl enable nginx -q && systemctl start nginx -q || systemctl reload nginx -q"
+echo "    Review UI: http://45.55.68.231/review.html"
 
 echo "=== Migrating local state to Supabase (safe to re-run) ==="
 $SSH $SERVER "

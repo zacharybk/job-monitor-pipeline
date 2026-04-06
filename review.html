@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Review</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 14px; background: #f5f5f5; color: #111; }
+
+    /* Auth */
+    #auth { display: flex; align-items: center; justify-content: center; height: 100vh; }
+    #auth-box { background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.1); width: 360px; text-align: center; }
+    #auth-box h1 { font-size: 20px; margin-bottom: 8px; }
+    #auth-box p { color: #666; margin-bottom: 24px; font-size: 13px; }
+    #auth-box input { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; margin-bottom: 12px; }
+    #auth-box button { width: 100%; padding: 10px; background: #111; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; }
+    #auth-msg { margin-top: 16px; font-size: 13px; color: #555; }
+
+    /* App */
+    #app { display: none; }
+    #topbar { background: #fff; border-bottom: 1px solid #e5e5e5; padding: 12px 20px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 10; }
+    #topbar h1 { font-size: 16px; font-weight: 600; margin-right: 8px; }
+    #search { padding: 7px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; width: 220px; }
+    .filter-btn { padding: 6px 14px; border: 1px solid #ddd; border-radius: 6px; background: #fff; font-size: 13px; cursor: pointer; color: #555; }
+    .filter-btn.active { background: #111; color: #fff; border-color: #111; }
+    #count { margin-left: auto; color: #888; font-size: 13px; }
+    #signout { color: #888; font-size: 13px; cursor: pointer; text-decoration: underline; background: none; border: none; }
+
+    /* Table */
+    #table-wrap { padding: 16px 20px; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    th { text-align: left; padding: 10px 14px; background: #fafafa; border-bottom: 1px solid #e5e5e5; font-weight: 600; font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+    td { padding: 12px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafafa; }
+    tr.decided td { opacity: 0.5; }
+
+    .score { display: inline-block; padding: 2px 8px; border-radius: 12px; font-weight: 700; font-size: 13px; white-space: nowrap; }
+    .score-high { background: #dcfce7; color: #166534; }
+    .score-mid  { background: #fef9c3; color: #854d0e; }
+    .score-low  { background: #fee2e2; color: #991b1b; }
+    .score-none { background: #f3f4f6; color: #6b7280; }
+
+    .job-title { font-weight: 600; font-size: 14px; }
+    .job-company { color: #555; font-size: 13px; margin-top: 2px; }
+    .job-location { color: #777; font-size: 12px; margin-top: 2px; }
+
+    .reasoning { color: #444; font-size: 13px; line-height: 1.5; max-width: 480px; }
+
+    a.job-link { color: #2563eb; text-decoration: none; font-size: 13px; white-space: nowrap; }
+    a.job-link:hover { text-decoration: underline; }
+
+    .actions { display: flex; gap: 6px; white-space: nowrap; }
+    .btn-apply { padding: 5px 12px; background: #111; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: 600; }
+    .btn-pass  { padding: 5px 12px; background: #fff; color: #555; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; font-size: 12px; }
+    .btn-apply:hover { background: #333; }
+    .btn-pass:hover  { background: #f5f5f5; }
+    .decided-badge { font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+    .badge-apply { background: #dcfce7; color: #166534; }
+    .badge-pass  { background: #f3f4f6; color: #6b7280; }
+
+    #loading { text-align: center; padding: 60px; color: #888; }
+    #empty   { text-align: center; padding: 60px; color: #888; }
+  </style>
+</head>
+<body>
+
+<!-- Auth -->
+<div id="auth">
+  <div id="auth-box">
+    <h1>Job Review</h1>
+    <p>Enter your email to receive a sign-in link.</p>
+    <input type="email" id="email-input" placeholder="you@example.com">
+    <button onclick="sendMagicLink()">Send link</button>
+    <div id="auth-msg"></div>
+  </div>
+</div>
+
+<!-- App -->
+<div id="app">
+  <div id="topbar">
+    <h1>Job Review</h1>
+    <input type="text" id="search" placeholder="Search title or company..." oninput="onSearch()">
+    <button class="filter-btn active" data-filter="new"      onclick="setFilter('new')">New</button>
+    <button class="filter-btn"        data-filter="applied"  onclick="setFilter('applied')">Applied</button>
+    <button class="filter-btn"        data-filter="passed"   onclick="setFilter('passed')">Passed</button>
+    <button class="filter-btn"        data-filter="all"      onclick="setFilter('all')">All</button>
+    <span id="count"></span>
+    <button id="signout" onclick="signOut()">Sign out</button>
+  </div>
+  <div id="table-wrap">
+    <div id="loading">Loading jobs...</div>
+    <div id="empty" style="display:none">No jobs found.</div>
+    <table id="jobs-table" style="display:none">
+      <thead>
+        <tr>
+          <th>Score</th>
+          <th>Job</th>
+          <th>Location</th>
+          <th>Link</th>
+          <th>Reasoning</th>
+          <th>Decision</th>
+        </tr>
+      </thead>
+      <tbody id="jobs-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // ── Config ───────────────────────────────────────────────────────────────────
+  const SUPABASE_URL  = 'https://lyaxzyjqvfwphcmmmibt.supabase.co';
+  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5YXh6eWpxdmZ3cGhjbW1taWJ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3MjM1NzIsImV4cCI6MjA4ODI5OTU3Mn0.6lJUy2aAwnzl5JJRxGLJYgZ7B0nVqiNeaEwJ0xNmRpw';
+  const ALLOWED_EMAIL = 'zacharybk@gmail.com';
+
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+  // ── State ────────────────────────────────────────────────────────────────────
+  let allJobs = [];
+  let currentFilter = new URLSearchParams(location.search).get('filter') || 'new';
+  let searchQuery   = new URLSearchParams(location.search).get('q') || '';
+
+  // ── Auth ─────────────────────────────────────────────────────────────────────
+  async function sendMagicLink() {
+    const email = document.getElementById('email-input').value.trim();
+    const msg   = document.getElementById('auth-msg');
+    if (!email) return;
+    const { error } = await sb.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: location.origin + location.pathname }
+    });
+    msg.textContent = error ? error.message : 'Check your email for the sign-in link.';
+  }
+
+  async function signOut() {
+    await sb.auth.signOut();
+    location.reload();
+  }
+
+  sb.auth.onAuthStateChange(async (event, session) => {
+    if (!session) {
+      document.getElementById('auth').style.display = 'flex';
+      document.getElementById('app').style.display  = 'none';
+      return;
+    }
+    if (session.user.email !== ALLOWED_EMAIL) {
+      await sb.auth.signOut();
+      document.getElementById('auth-msg').textContent = 'Not authorized.';
+      return;
+    }
+    document.getElementById('auth').style.display = 'none';
+    document.getElementById('app').style.display  = 'block';
+    document.getElementById('search').value = searchQuery;
+    setFilterUI(currentFilter);
+    loadJobs();
+  });
+
+  // ── Data ─────────────────────────────────────────────────────────────────────
+  async function loadJobs() {
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('jobs-table').style.display = 'none';
+    document.getElementById('empty').style.display = 'none';
+
+    const { data, error } = await sb
+      .from('jobs')
+      .select('url_hash, title, company, location, url, match_score, match_reasoning, user_decision, reviewed_at, date_added')
+      .eq('relevant', true)
+      .eq('is_active', true)
+      .order('match_score', { ascending: false, nullsFirst: false })
+      .order('date_added', { ascending: false });
+
+    if (error) { console.error(error); return; }
+    allJobs = data || [];
+    render();
+  }
+
+  // ── Render ───────────────────────────────────────────────────────────────────
+  function render() {
+    let jobs = allJobs;
+
+    // Filter
+    if (currentFilter === 'new')     jobs = jobs.filter(j => !j.user_decision);
+    if (currentFilter === 'applied') jobs = jobs.filter(j => j.user_decision === 'apply');
+    if (currentFilter === 'passed')  jobs = jobs.filter(j => j.user_decision === 'skip');
+
+    // Search
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      jobs = jobs.filter(j =>
+        (j.title   || '').toLowerCase().includes(q) ||
+        (j.company || '').toLowerCase().includes(q)
+      );
+    }
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('count').textContent = `${jobs.length} job${jobs.length !== 1 ? 's' : ''}`;
+
+    if (!jobs.length) {
+      document.getElementById('empty').style.display = 'block';
+      document.getElementById('jobs-table').style.display = 'none';
+      return;
+    }
+
+    document.getElementById('empty').style.display = 'none';
+    document.getElementById('jobs-table').style.display = 'table';
+
+    const tbody = document.getElementById('jobs-body');
+    tbody.innerHTML = jobs.map(job => {
+      const score     = job.match_score;
+      const scoreHtml = score != null
+        ? `<span class="score ${score >= 7 ? 'score-high' : score >= 5 ? 'score-mid' : 'score-low'}">${score.toFixed(1)}</span>`
+        : `<span class="score score-none">—</span>`;
+
+      const decided   = job.user_decision;
+      const rowClass  = decided ? 'decided' : '';
+      const decisionHtml = decided
+        ? `<span class="decided-badge ${decided === 'apply' ? 'badge-apply' : 'badge-pass'}">${decided === 'apply' ? 'Applied' : 'Passed'}</span>`
+        : `<div class="actions">
+             <button class="btn-apply" onclick="decide('${job.url_hash}', 'apply', '${escHtml(job.url)}')">Apply</button>
+             <button class="btn-pass"  onclick="decide('${job.url_hash}', 'skip',  '')">Pass</button>
+           </div>`;
+
+      return `<tr class="${rowClass}" id="row-${job.url_hash}">
+        <td>${scoreHtml}</td>
+        <td>
+          <div class="job-title">${escHtml(job.title)}</div>
+          <div class="job-company">${escHtml(job.company)}</div>
+        </td>
+        <td><div class="job-location">${escHtml(job.location || '—')}</div></td>
+        <td><a class="job-link" href="${escHtml(job.url)}" target="_blank" rel="noopener">View →</a></td>
+        <td><div class="reasoning">${escHtml(job.match_reasoning || '—')}</div></td>
+        <td>${decisionHtml}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  // ── Actions ──────────────────────────────────────────────────────────────────
+  async function decide(urlHash, decision, jobUrl) {
+    // Optimistic update
+    const job = allJobs.find(j => j.url_hash === urlHash);
+    if (job) job.user_decision = decision;
+    render();
+
+    await sb.from('jobs').update({
+      user_decision: decision,
+      reviewed_at:   new Date().toISOString(),
+    }).eq('url_hash', urlHash);
+
+    if (decision === 'apply' && jobUrl) {
+      window.open(jobUrl, '_blank', 'noopener');
+    }
+  }
+
+  // ── Controls ─────────────────────────────────────────────────────────────────
+  function setFilter(f) {
+    currentFilter = f;
+    setFilterUI(f);
+    updateURL();
+    render();
+  }
+
+  function setFilterUI(f) {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.filter === f);
+    });
+  }
+
+  let searchTimer;
+  function onSearch() {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      searchQuery = document.getElementById('search').value.trim();
+      updateURL();
+      render();
+    }, 200);
+  }
+
+  function updateURL() {
+    const p = new URLSearchParams();
+    if (currentFilter !== 'new') p.set('filter', currentFilter);
+    if (searchQuery) p.set('q', searchQuery);
+    const qs = p.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+  }
+
+  function escHtml(s) {
+    if (!s) return '';
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+</script>
+</body>
+</html>
