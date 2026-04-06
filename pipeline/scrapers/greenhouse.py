@@ -1,49 +1,38 @@
-"""Scrape Greenhouse ATS job boards with pagination support."""
+"""Scrape Greenhouse job boards via the public API (no Playwright needed)."""
+import json
+import urllib.request
 from playwright.sync_api import Browser
 
 
 def scrape(browser: Browser, source: dict) -> list[dict]:
-    url  = source["url"]
-    name = source["name"]
-    jobs = []
-    page = browser.new_page()
-    current_page = 1
+    """
+    Calls the Greenhouse Job Board API directly.
+    URL format: https://job-boards.greenhouse.io/{token}
+    API format: https://boards-api.greenhouse.io/v1/boards/{token}/jobs
+    """
+    url   = source["url"].rstrip("/")
+    name  = source["name"]
+    token = url.split("/")[-1]
+    api_url = f"https://boards-api.greenhouse.io/v1/boards/{token}/jobs"
+
     try:
-        while True:
-            paged_url = url if current_page == 1 else f"{url}?page={current_page}"
-            page.goto(paged_url, timeout=30000)
-            page.wait_for_load_state("networkidle", timeout=15000)
-            elements   = page.query_selector_all(".opening, [class*='job'], a[href*='/jobs/']")
-            page_count = 0
-            for el in elements:
-                try:
-                    link = el if el.get_attribute("href") else el.query_selector("a")
-                    if not link:
-                        continue
-                    href = link.get_attribute("href")
-                    if not href or "/jobs/" not in href:
-                        continue
-                    if href.startswith("/"):
-                        href = f"https://job-boards.greenhouse.io{href}"
-                    title = link.inner_text().strip()
-                    if not title or len(title) < 3:
-                        continue
-                    loc_el   = el.query_selector(".location, [class*='location']")
-                    location = loc_el.inner_text().strip() if loc_el else ""
-                    jobs.append({"title": title, "company": name,
-                                 "location": location, "url": href, "source": "greenhouse"})
-                    page_count += 1
-                except Exception:
-                    continue
-            next_link = page.query_selector(f"a[href*='page={current_page + 1}']")
-            if next_link and page_count > 0:
-                current_page += 1
-            else:
-                break
+        req = urllib.request.Request(api_url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
     except Exception as e:
         print(f"    Greenhouse error ({name}): {e}")
-    finally:
-        page.close()
-    pages_str = f"{current_page} page{'s' if current_page > 1 else ''}"
-    print(f"    {name}: {len(jobs)} jobs ({pages_str})")
-    return jobs
+        return []
+
+    jobs = []
+    for job in data.get("jobs", []):
+        jobs.append({
+            "title":       job.get("title", "").strip(),
+            "company":     name,
+            "location":    job.get("location", {}).get("name", ""),
+            "url":         job.get("absolute_url", ""),
+            "source":      "greenhouse",
+            "date_posted": (job.get("first_published") or "")[:10] or None,
+        })
+
+    print(f"    {name}: {len(jobs)} jobs")
+    return [j for j in jobs if j["url"]]
