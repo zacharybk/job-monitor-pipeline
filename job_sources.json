@@ -2150,7 +2150,7 @@
     },
     {
       "name": "Accel",
-      "url": "https://jobs.accel.com/jobs",
+      "url": "https://jobs.accel.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2180,19 +2180,19 @@
     },
     {
       "name": "General Catalyst",
-      "url": "https://jobs.generalcatalyst.com/jobs",
+      "url": "https://jobs.generalcatalyst.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
     {
       "name": "Index Ventures",
-      "url": "https://jobs.indexventures.com/jobs",
-      "type": "vc_job_board",
+      "url": "https://www.indexventures.com/startup-jobs/remote/1",
+      "type": "career_page",
       "source_list": "vc_job_boards"
     },
     {
       "name": "Khosla Ventures",
-      "url": "https://jobs.khoslaventures.com/jobs",
+      "url": "https://jobs.khoslaventures.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2282,7 +2282,7 @@
     },
     {
       "name": "Techstars",
-      "url": "https://jobs.techstars.com/jobs",
+      "url": "https://jobs.techstars.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2354,13 +2354,13 @@
     },
     {
       "name": "Lux Capital",
-      "url": "https://jobs.luxcapital.com/jobs",
+      "url": "https://jobs.luxcapital.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
     {
       "name": "Obvious Ventures",
-      "url": "https://jobs.obviousventures.com/jobs",
+      "url": "https://jobs.obvious.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2390,7 +2390,7 @@
     },
     {
       "name": "Greycroft",
-      "url": "https://jobs.greycroft.com/jobs",
+      "url": "https://jobs.greycroft.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2402,7 +2402,7 @@
     },
     {
       "name": "True Ventures",
-      "url": "https://jobs.trueventures.com/jobs",
+      "url": "https://jobs.trueventures.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2414,19 +2414,13 @@
     },
     {
       "name": "Eniac Ventures",
-      "url": "https://jobs.eniac.vc/jobs",
+      "url": "https://jobs.eniac.vc/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
     {
       "name": "Notation Capital",
       "url": "https://jobs.notation.vc/jobs",
-      "type": "vc_job_board",
-      "source_list": "vc_job_boards"
-    },
-    {
-      "name": "Collaborative Fund",
-      "url": "https://jobs.collaborativefund.com/jobs",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2450,7 +2444,7 @@
     },
     {
       "name": "Homebrew",
-      "url": "https://jobs.homebrew.co/jobs",
+      "url": "https://careers.homebrew.co/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9ucyI6WyJVbml0ZWQgU3RhdGVzIl0sInNlYXJjaGFibGVfbG9jYXRpb25fb3B0aW9uIjpbInJlbW90ZSJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2462,13 +2456,13 @@
     },
     {
       "name": "Amplify Partners",
-      "url": "https://jobs.amplifypartners.com/jobs",
+      "url": "https://talent.amplifypartners.com/jobs?locations=United+States&hybridOrRemoteOnly=true",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
     {
       "name": "Uncork Capital",
-      "url": "https://jobs.uncork.vc/jobs",
+      "url": "https://jobs.uncorkcapital.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2492,25 +2486,25 @@
     },
     {
       "name": "Pear VC",
-      "url": "https://jobs.pear.vc/jobs",
-      "type": "vc_job_board",
+      "url": "https://jobs.ashbyhq.com/Pear-VC?workplaceType=Remote",
+      "type": "ashby",
       "source_list": "vc_job_boards"
     },
     {
       "name": "8VC",
-      "url": "https://jobs.8vc.com/jobs",
+      "url": "https://jobs.8vc.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
     {
       "name": "645 Ventures",
-      "url": "https://jobs.645ventures.com/jobs",
+      "url": "https://jobs.645ventures.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
     {
       "name": "25Madison",
-      "url": "https://jobs.25madison.com/jobs",
+      "url": "https://jobs.25madison.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2570,25 +2564,25 @@
     },
     {
       "name": "Earlybird",
-      "url": "https://jobs.earlybird.com/jobs",
+      "url": "https://jobs.earlybird.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
     {
       "name": "HV Capital",
-      "url": "https://jobs.hvcapital.com/jobs",
+      "url": "https://hv.getro.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXX0%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
     {
       "name": "Point Nine Capital",
-      "url": "https://jobs.pointnine.com/jobs",
+      "url": "https://jobs.pointnine.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
     {
       "name": "Cherry Ventures",
-      "url": "https://jobs.cherry.vc/jobs",
+      "url": "https://talent.cherry.vc/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2659,12 +2653,6 @@
       "source_list": "vc_job_boards"
     },
     {
-      "name": "Riverwood Capital",
-      "url": "https://www.riverwoodcapital.com/careers",
-      "type": "vc_job_board",
-      "source_list": "vc_job_boards"
-    },
-    {
       "name": "Precursor Ventures",
       "url": "https://jobs.precursorvc.com/jobs",
       "type": "vc_job_board",
@@ -2683,12 +2671,6 @@
       "source_list": "vc_job_boards"
     },
     {
-      "name": "Backstage Capital",
-      "url": "https://jobs.backstagecapital.com/jobs",
-      "type": "vc_job_board",
-      "source_list": "vc_job_boards"
-    },
-    {
       "name": "Harlem Capital",
       "url": "https://jobs.harlemcapital.com/jobs",
       "type": "vc_job_board",
@@ -2696,7 +2678,7 @@
     },
     {
       "name": "Kapor Capital",
-      "url": "https://jobs.kaporcapital.com/jobs",
+      "url": "https://jobs.kaporcapital.com/jobs?q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2714,13 +2696,13 @@
     },
     {
       "name": "Lerer Hippeau",
-      "url": "https://jobs.lererhippeau.com/jobs",
+      "url": "https://jobs.lererhippeau.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
     {
       "name": "RRE Ventures",
-      "url": "https://jobs.rre.com/jobs",
+      "url": "https://jobs.rre.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2733,12 +2715,6 @@
     {
       "name": "RTP Global",
       "url": "https://jobs.rtp.vc/jobs",
-      "type": "vc_job_board",
-      "source_list": "vc_job_boards"
-    },
-    {
-      "name": "Conductive Ventures",
-      "url": "https://jobs.conductive.vc/jobs",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
@@ -2797,20 +2773,14 @@
       "source_list": "vc_job_boards"
     },
     {
-      "name": "Mike Maples / Floodgate",
-      "url": "https://jobs.floodgate.com/jobs",
-      "type": "vc_job_board",
-      "source_list": "vc_job_boards"
-    },
-    {
       "name": "Jobs in VC (Getro aggregator)",
-      "url": "https://jobsinvc.getro.com/jobs",
+      "url": "https://jobsinvc.getro.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
     {
       "name": "Getro Community Board",
-      "url": "https://community.getro.com/jobs",
+      "url": "https://community.getro.com/jobs?filter=eyJzZWFyY2hhYmxlX2xvY2F0aW9uX29wdGlvbiI6WyJyZW1vdGUiXSwic2VhcmNoYWJsZV9sb2NhdGlvbnMiOlsiVW5pdGVkIFN0YXRlcyJdfQ%3D%3D&q=customer",
       "type": "vc_job_board",
       "source_list": "vc_job_boards"
     },
