@@ -1,8 +1,14 @@
 """Score a job against the user profile using Claude Haiku."""
 import json
 import re
+import unicodedata
 import anthropic
 from pipeline.config import ANTHROPIC_API_KEY, SCORING_MODEL, PROFILE_TEXT
+
+
+def _sanitize(text: str) -> str:
+    """Normalize unicode to ASCII-safe text (handles em dashes, curly quotes, etc.)."""
+    return unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
 
 _SYSTEM_PROMPT = (
     "You are a job-fit evaluator. Given a job description and a candidate profile, "
@@ -28,10 +34,10 @@ def score_job(title: str, company: str, description: str) -> tuple[float, str]:
     """
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     prompt = _USER_TEMPLATE.format(
-        profile=PROFILE_TEXT[:3000],      # cap profile length
-        title=title,
-        company=company,
-        description=description[:4000],   # cap JD length
+        profile=_sanitize(PROFILE_TEXT[:3000]),
+        title=_sanitize(title),
+        company=_sanitize(company),
+        description=_sanitize(description[:4000]),
     )
 
     try:

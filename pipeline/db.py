@@ -75,14 +75,24 @@ def upsert_jobs(client: Client, jobs: list[dict]) -> int:
 
 
 def get_unfiltered_jobs(client: Client) -> list[dict]:
-    """All jobs not yet marked relevant (across all time)."""
-    result = (
-        client.table("jobs")
-        .select("url_hash, title, location")
-        .eq("relevant", False)
-        .execute()
-    )
-    return result.data or []
+    """All jobs not yet marked relevant (across all time). Paginates past Supabase's 1000-row default."""
+    all_rows = []
+    page_size = 1000
+    offset = 0
+    while True:
+        result = (
+            client.table("jobs")
+            .select("url_hash, title, location")
+            .eq("relevant", False)
+            .range(offset, offset + page_size - 1)
+            .execute()
+        )
+        batch = result.data or []
+        all_rows.extend(batch)
+        if len(batch) < page_size:
+            break
+        offset += page_size
+    return all_rows
 
 
 def mark_relevant(client: Client, url_hashes: list[str]) -> None:
