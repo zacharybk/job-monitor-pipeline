@@ -54,7 +54,7 @@ def upsert_jobs(client: Client, jobs: list[dict]) -> int:
         h = job_hash(url)
         if h in seen_hashes:
             continue
-        seen_hashes[h] = {
+        row = {
             "title":     job.get("title", ""),
             "company":   job.get("company", ""),
             "location":  job.get("location", ""),
@@ -65,6 +65,14 @@ def upsert_jobs(client: Client, jobs: list[dict]) -> int:
             "is_active": True,
             "last_seen": now,
         }
+        # Optional enrichment fields — present for API-backed scrapers (e.g. Ashby, Greenhouse)
+        for field in ("department", "salary_min", "salary_max", "salary_currency", "date_posted"):
+            if job.get(field) is not None:
+                row[field] = job[field]
+        if job.get("description"):
+            row["description"] = job["description"]
+            row["enriched_at"] = now  # skip Phase 3 for jobs that arrive with descriptions
+        seen_hashes[h] = row
     rows = list(seen_hashes.values())
     total = 0
     for i in range(0, len(rows), 500):

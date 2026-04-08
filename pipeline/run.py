@@ -39,7 +39,7 @@ from pipeline.enricher import fetch_description
 from pipeline.scorer import score_job
 from pipeline.scrapers import (
     ashby, greenhouse, lever, vc_boards,
-    startups_gallery, career_page, workatastartup,
+    startups_gallery, career_page, workatastartup, yc_jobs,
 )
 
 SCRAPER_MAP = {
@@ -50,6 +50,7 @@ SCRAPER_MAP = {
     "playwright":     startups_gallery.scrape,
     "career_page":    career_page.scrape,
     "workatastartup": workatastartup.scrape,
+    "yc_api":         yc_jobs.scrape,
 }
 
 
