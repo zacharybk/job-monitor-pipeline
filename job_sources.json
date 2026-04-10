@@ -4901,6 +4901,12 @@
       "url": "https://jobs.ashbyhq.com/zyphra",
       "type": "ashby",
       "source_list": "manual"
+    },
+    {
+      "name": "WorkOS",
+      "url": "https://jobs.ashbyhq.com/workos",
+      "type": "ashby",
+      "source_list": "manual"
     }
   ],
   "manual_check": []
