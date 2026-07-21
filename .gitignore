@@ -25,3 +25,13 @@ plans/
 discovered_sources.json
 Job monitor updates March 2026.md
 job_search.md
+
+# Gmail OAuth secrets (never commit)
+agent/.gmail_client_secret.json
+agent/.gmail_token.json
+
+# Run logs and OS cruft
+agent/*.log
+.DS_Store
+**/.DS_Store
+remote-cx-job-sources/

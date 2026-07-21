@@ -119,11 +119,21 @@ _COMMANDS = {
 }
 
 
+def _load_payload(argv) -> dict:
+    """Read the JSON payload. Prefer --json-file (or --json -, stdin) so bodies
+    with apostrophes/quotes survive without shell escaping."""
+    if "--json-file" in argv:
+        with open(argv[argv.index("--json-file") + 1]) as f:
+            return _json.load(f)
+    if "--json" in argv:
+        val = argv[argv.index("--json") + 1]
+        return _json.load(sys.stdin) if val == "-" else _json.loads(val)
+    return {}
+
+
 def _main(argv):
     cmd = argv[1]
-    payload = {}
-    if "--json" in argv:
-        payload = _json.loads(argv[argv.index("--json") + 1])
+    payload = _load_payload(argv)
     if "--limit" in argv:
         payload["limit"] = argv[argv.index("--limit") + 1]
     result = _COMMANDS[cmd](get_client(), payload)

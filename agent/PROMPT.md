@@ -65,17 +65,34 @@ python: `/Users/zach/.venv/bin/python`.
         "linkedin_url":"…","job_id":"…"}'` — capture the returned contact id.
      d. Draft one outreach email per contact (subject + body, per the `/apply`
         voice guide and non-negotiables: warm named open, lead with a specific
-        reason, short, confident close, no AI filler). Save:
-        `... -m agent.store save-outreach --json '{"contact_id":"<id from c>",
-        "job_id":"…","track":"job","sequence_step":1,"subject":"…","body":"…"}'`.
+        reason, short, confident close, no AI filler). **Do NOT claim Zach has
+        already applied or done anything he hasn't** — he applies manually and
+        may not have yet. Use present-tense interest ("I'm reaching out about
+        your Head of CS role", "your Head of CS opening caught my eye"), never
+        "I just applied". **Write the payload to a temp file and pipe it in** so
+        apostrophes and quotes survive — do NOT inline JSON with apostrophes in a
+        shell arg:
+        - Use the Write tool to create `/tmp/outreach.json` with keys
+          `contact_id` (the id from step c), `job_id`, `track`:"job",
+          `sequence_step`:1, `subject`, `body`.
+        - Then run `... -m agent.store save-outreach --json-file /tmp/outreach.json`.
+        Do the same `--json-file` pattern for save-pick, save-contact, and
+        save-application whenever a value contains an apostrophe or quote.
 
 4. **Follow-ups.** Run `... -m agent.store get-due-followups`. For each returned
    row, draft the next-step email (sequence_step + 1, shorter nudge) and
-   save-outreach with the incremented step.
+   save-outreach with the incremented step (via `--json-file`).
 
-5. **Log.** `... -m agent.store log-activity --json '{"jobs_reviewed":N,
-   "picks_made":N,"emails_drafted":N,"applications_sent":0,
-   "discovery_notes":{}}'`.
+5. **Sync Gmail drafts.** Run `... -m agent.gmail_drafts sync`. This creates a
+   Gmail draft in Zach's account for every drafted outreach email that doesn't
+   have one yet. It NEVER sends — Zach reviews and sends from Gmail himself. If
+   it errors with "No Gmail token", skip this step and note it in the summary
+   (Gmail auth not set up yet); the drafts still live in Supabase.
 
-6. **Print a 5-line summary:** jobs reviewed, picks made, packages written,
-   emails drafted, and the single strongest pick with its one-line reasoning.
+6. **Log.** `... -m agent.store log-activity --json-file /tmp/activity.json`
+   (write jobs_reviewed, picks_made, emails_drafted, applications_sent:0,
+   discovery_notes to the file first).
+
+7. **Print a 5-line summary:** jobs reviewed, picks made, packages written,
+   emails drafted (and whether Gmail drafts were created), and the single
+   strongest pick with its one-line reasoning.
