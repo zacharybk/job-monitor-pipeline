@@ -12,8 +12,21 @@ SUPABASE_SERVICE_KEY = os.environ["SUPABASE_SERVICE_KEY"]
 # ── RapidAPI ──────────────────────────────────────────────────────────────────
 RAPIDAPI_KEY = os.getenv("RAPIDAPI_KEY", "")  # required for yc_api source
 
-# ── Anthropic ─────────────────────────────────────────────────────────────────
-ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
+# ── Scoring backend ───────────────────────────────────────────────────────────
+# Preferred: DigitalOcean Gradient serverless inference (OpenAI-compatible, billed
+# to DO credits, same Haiku pricing). Create a model access key in the DO console
+# (Inference → model access keys) and set DO_INFERENCE_KEY in .env.
+# Scoring is the gate that decides what Zach sees, so we use Sonnet (better judgment)
+# rather than Haiku. Confirm the exact model slug against your account with:
+#   curl -s https://inference.do-ai.run/v1/models \
+#     -H "Authorization: Bearer $DO_INFERENCE_KEY" | python3 -m json.tool
+# then set DO_SCORING_MODEL in .env to the Sonnet 5 slug it lists.
+DO_INFERENCE_KEY      = os.getenv("DO_INFERENCE_KEY", "")
+DO_INFERENCE_BASE_URL = os.getenv("DO_INFERENCE_BASE_URL", "https://inference.do-ai.run/v1")
+DO_SCORING_MODEL      = os.getenv("DO_SCORING_MODEL", "anthropic-claude-4.6-sonnet")
+
+# Fallback: Anthropic direct (used only when DO_INFERENCE_KEY is unset).
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 SCORING_MODEL     = "claude-haiku-4-5-20251001"
 
 # ── Healthchecks.io ───────────────────────────────────────────────────────────

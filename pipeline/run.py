@@ -155,15 +155,24 @@ def phase4_score(client) -> None:
         print("  Nothing to score.")
         return
 
+    scored = 0
     for i, job in enumerate(jobs, 1):
-        score, reasoning = score_job(
+        result = score_job(
             job["title"], job["company"], job.get("description", "")
         )
+        if result is None:
+            # Leave scored_at NULL so this job is retried on the next run,
+            # instead of freezing it at a fake 0.0.
+            continue
+        score, reasoning = result
         save_score(client, job["url_hash"], score, reasoning)
+        scored += 1
         if i % 10 == 0:
             print(f"  Scored {i}/{len(jobs)}...")
 
-    print(f"  Scoring complete: {len(jobs)} jobs processed")
+    failed = len(jobs) - scored
+    print(f"  Scoring complete: {scored}/{len(jobs)} scored"
+          + (f" ({failed} failed, will retry next run)" if failed else ""))
 
     # Print top matches from this batch
     result = (
