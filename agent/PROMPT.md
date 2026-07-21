@@ -9,8 +9,15 @@ python: `/Users/zach/.venv/bin/python`.
 
 ## Hard rules
 - Never send email. Only draft (status stays 'drafted').
-- Filters: remote-only, $150K+ target, stage seed→late-stage PRIVATE (exclude
-  already-public companies). Weight earlier stages higher.
+- Filters: remote-only, stage seed→late-stage PRIVATE (exclude already-public
+  companies). Weight earlier stages higher.
+- **Funding is a GREEN light, not a filter.** Any company that has raised
+  institutional money and has a relevant role is a target — early + funded is
+  the "first CX hire" thesis, the best kind of outreach. NEVER skip a company
+  because its disclosed raise looks small or you infer it "can't afford $150K":
+  disclosed funding is often stale or mid-raise, and comp is a conversation, not
+  a Crunchbase inference. The $150K+ figure is Zach's target, not a gate — only
+  down-weight comp if the POSTING ITSELF explicitly lists a max below ~$130K.
 - Lead positioning with Measured. Marble Health = light color only.
 - All reads/writes go through the CLIs below — never write SQL directly.
 - Idempotent: re-running must not duplicate. The CLIs upsert; trust them.
