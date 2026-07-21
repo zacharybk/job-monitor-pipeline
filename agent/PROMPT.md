@@ -41,16 +41,21 @@ python: `/Users/zach/.venv/bin/python`.
 
 3. **Fit gate + package (shortlist only).** For each shortlisted job, apply the
    `/apply` skill workflow:
-   - **Liveness check + JD fetch (use curl, not WebFetch).** Job boards (Lever,
-     Greenhouse, Ashby) bot-block WebFetch with a 403. Fetch with curl and a
-     browser user-agent instead:
-     `curl -sL -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36' -o /tmp/jd.html -w '%{http_code}' "<url>"`
-     - **404**, or the body says closed/filled/no longer accepting → `mark-skipped`
-       "posting no longer live". Do NOT package it.
-     - **403 or a bot-wall** → inconclusive, NOT dead. Don't skip on that alone —
-       the freshness filter already vouches for it; try WebFetch/WebSearch for the
-       JD text instead.
-     - **200** → read `/tmp/jd.html` for the job description; use it as the JD.
+   - **JD source.** The job's `description` from Supabase is usually enough. If
+     it's empty or you want the current, full posting, use the ATS board API (clean
+     JSON, no 403s, lists only LIVE roles — so it also confirms the job is still
+     open). Derive the company slug from the URL:
+     - Lever: `https://api.lever.co/v0/postings/{company}?mode=json` → match the
+       posting id from the URL.
+     - Ashby: `https://api.ashbyhq.com/posting-api/job-board/{company}`
+     - Greenhouse: `https://boards-api.greenhouse.io/v1/boards/{company}/jobs`
+     If the posting id isn't in the board's live list, it closed → `mark-skipped`
+     "posting no longer live". (No per-URL liveness curl needed — the freshness
+     filter already keeps us off stale jobs.)
+   - **Location gate (hard).** Confirm the role is remote and open to the US. If
+     it's country/region-locked to somewhere Zach can't work from (e.g. "Europe
+     only", "must be based in <non-US>"), `mark-skipped` "location-locked, not
+     US-remote" — no matter how good the fit otherwise.
    - Research the company (2–3 web searches: funding, stage, recent news). CONFIRM
      it is private, not already public.
    - Score the fit rubric (stage, comp, remote, scope build-vs-run, ai-nativeness,
