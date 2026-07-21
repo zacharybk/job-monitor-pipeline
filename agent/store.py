@@ -17,16 +17,25 @@ def get_client() -> Client:
     return create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
 
 
-def get_jobs_to_review(client: Client, limit: int = 100) -> list[dict]:
+def get_jobs_to_review(client: Client, limit: int = 100, max_age_days: int = 14) -> list[dict]:
+    """Unreviewed, relevant jobs still seen recently in scrapes.
+
+    `last_seen` is the liveness signal: a job the scraper stopped finding is
+    almost certainly closed (is_active is unreliable — it doesn't get flipped).
+    We filter to jobs seen within max_age_days and surface freshest first, so the
+    agent never wastes effort on stale postings.
+    """
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=max_age_days)).isoformat()
     picked = client.table("picks").select("job_id").execute().data or []
     picked_ids = {r["job_id"] for r in picked}
     rows = (
         client.table("jobs")
-        .select("id, title, company, location, description, url")
+        .select("id, title, company, location, description, url, last_seen")
         .eq("relevant", True)
         .eq("is_active", True)
         .is_("reviewed_at", "null")
-        .order("created_at", desc=True)
+        .gte("last_seen", cutoff)
+        .order("last_seen", desc=True)
         .limit(limit + len(picked_ids))
         .execute()
     ).data or []
