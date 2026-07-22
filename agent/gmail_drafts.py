@@ -10,18 +10,30 @@ import base64
 from email.mime.text import MIMEText
 
 _HERE = os.path.dirname(__file__)
-CLIENT_SECRET_PATH = os.path.join(_HERE, ".gmail_client_secret.json")
-TOKEN_PATH = os.path.join(_HERE, ".gmail_token.json")
+
+
+def _resolve(*names):
+    """First existing of the given filenames; default to the first (hidden) name.
+    Finder won't save dotfiles, so we accept the non-dotted variant too."""
+    for n in names:
+        p = os.path.join(_HERE, n)
+        if os.path.exists(p):
+            return p
+    return os.path.join(_HERE, names[0])
+
+
+CLIENT_SECRET_PATH = _resolve(".gmail_client_secret.json", "gmail_client_secret.json")
+TOKEN_PATH = _resolve(".gmail_token.json", "gmail_token.json")
 SCOPES = ["https://www.googleapis.com/auth/gmail.compose"]
 
 
 def _build_mime(to: str, subject: str, body: str, sender: str | None = None) -> str:
     """Return the base64url-encoded RFC-2822 message Gmail's API expects."""
     msg = MIMEText(body)
-    msg["to"] = to
-    msg["subject"] = subject
+    msg["To"] = to
+    msg["Subject"] = subject
     if sender:
-        msg["from"] = sender
+        msg["From"] = sender
     return base64.urlsafe_b64encode(msg.as_bytes()).decode()
 
 

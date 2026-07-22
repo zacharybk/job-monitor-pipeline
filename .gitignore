@@ -35,3 +35,5 @@ agent/*.log
 .DS_Store
 **/.DS_Store
 remote-cx-job-sources/
+agent/gmail_client_secret.json
+agent/gmail_token.json

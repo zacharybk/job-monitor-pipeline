@@ -9,8 +9,8 @@ def test_build_mime_preserves_apostrophes_and_headers():
     raw = gmail_drafts._build_mime("dan@mabl.com", "Hello", "I've built that. You're set.")
     decoded = base64.urlsafe_b64decode(raw)
     msg = message_from_bytes(decoded)
-    assert msg["to"] == "dan@mabl.com"
-    assert msg["subject"] == "Hello"
+    assert msg["To"] == "dan@mabl.com"
+    assert msg["Subject"] == "Hello"
     assert "I've built that. You're set." in msg.get_payload(decode=True).decode()
 
 
