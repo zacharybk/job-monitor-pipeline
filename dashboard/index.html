@@ -113,26 +113,21 @@ function renderLogin(step){
     <h1>Job Search</h1><p>Your command center. Sign in with your email.</p>
     <div id="lf"></div></div>`;
   const lf=document.getElementById('lf');
-  if(step==='code'){
-    lf.innerHTML=`<input id="code" inputmode="numeric" placeholder="6-digit code from email"/>
-      <button class="btn pri" id="verify">Verify & enter</button>
-      <p class="muted" style="margin-top:10px;font-size:12px">Sent to ${esc(sessionStorage.otpEmail)}</p>`;
-    document.getElementById('verify').onclick=async()=>{
-      const token=document.getElementById('code').value.trim();
-      const {error}=await sb.auth.verifyOtp({email:sessionStorage.otpEmail,token,type:'email'});
-      if(error) return toast(error.message);
-      renderApp();
-    };
-  } else {
-    lf.innerHTML=`<input id="email" type="email" placeholder="you@email.com" value="zacharybk@gmail.com"/>
-      <button class="btn pri" id="send">Email me a code</button>`;
-    document.getElementById('send').onclick=async()=>{
-      const email=document.getElementById('email').value.trim();
-      const {error}=await sb.auth.signInWithOtp({email,options:{shouldCreateUser:true}});
-      if(error) return toast(error.message);
-      sessionStorage.otpEmail=email; renderLogin('code');
-    };
+  if(step==='sent'){
+    lf.innerHTML=`<p class="muted" style="font-size:14px">Check your email and tap the sign-in link. It opens right back here, logged in.</p>
+      <button class="ghost" id="again" style="margin-top:8px">Use a different email</button>`;
+    document.getElementById('again').onclick=()=>renderLogin();
+    return;
   }
+  lf.innerHTML=`<input id="email" type="email" placeholder="you@email.com" value="zacharybk@gmail.com"/>
+    <button class="btn pri" id="send">Email me a sign-in link</button>`;
+  document.getElementById('send').onclick=async()=>{
+    const email=document.getElementById('email').value.trim();
+    const redirect=location.origin+location.pathname;
+    const {error}=await sb.auth.signInWithOtp({email,options:{shouldCreateUser:true,emailRedirectTo:redirect}});
+    if(error) return toast(error.message);
+    renderLogin('sent');
+  };
 }
 
 /* ---------- APP SHELL ---------- */
