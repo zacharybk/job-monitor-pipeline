@@ -33,6 +33,18 @@ python: `/Users/zach/.venv/bin/python`.
    `/Users/zach/.venv/bin/python -m agent.store get-jobs-to-review --limit 100`.
    Parse the JSON array of jobs (id, title, company, location, description, url).
 
+1b. **Discovery — Lorikeet CX+AI jobs board (do this first, it's the highest-signal source).**
+   Use the `lorikeet-cx-jobs` MCP tools: call `search_jobs` for US-remote senior
+   CX/AI leadership roles (try queries like "Head of Customer Success", "VP
+   Customer Experience", "Head of Support", region US/remote, senior seniority),
+   and `get_featured_jobs`. For each result that isn't already in Supabase, insert
+   it so it can be picked:
+   `/Users/zach/.venv/bin/python -m agent.store add-job --json-file /tmp/job.json`
+   (write url, title, company, location, source:"lorikeet" to the file first;
+   add-job dedupes by URL and returns the job id). Then treat these jobs exactly
+   like the get-jobs-to-review batch in the steps below. (Web-search discovery is
+   optional/secondary; Lorikeet is the curated, on-target source.)
+
 2. **Cheap triage (no web search).** From titles/locations/descriptions, drop
    obvious non-fits: not remote/US, wrong function (engineering, marketing, sales,
    design, recruiting), or clearly a public mega-corp. For each dropped job run

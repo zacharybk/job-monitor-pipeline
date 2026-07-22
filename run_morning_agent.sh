@@ -13,7 +13,11 @@ echo "=== $(date '+%F %T') start (${MODE:-full}) ===" >> "$LOG"
 PROMPT="$(cat agent/PROMPT.md)"
 [ "$MODE" = "DRY_RUN" ] && PROMPT="DRY_RUN. $PROMPT"
 
-if claude -p "$PROMPT" --allowedTools "Bash,Read,Write,WebSearch,Skill" >> "$LOG" 2>&1; then
+TOOLS="Bash,Read,Write,WebSearch,WebFetch,Skill"
+TOOLS="$TOOLS,mcp__lorikeet-cx-jobs__search_jobs,mcp__lorikeet-cx-jobs__get_job"
+TOOLS="$TOOLS,mcp__lorikeet-cx-jobs__get_featured_jobs,mcp__lorikeet-cx-jobs__get_stats"
+
+if claude -p "$PROMPT" --allowedTools "$TOOLS" >> "$LOG" 2>&1; then
   echo "=== $(date '+%F %T') ok ===" >> "$LOG"
   [ -n "${HEALTHCHECK_URL:-}" ] && curl -fsS -m 10 "${HEALTHCHECK_URL}" >/dev/null 2>&1 || true
 else

@@ -1,6 +1,7 @@
 """Deterministic Supabase I/O for the morning agent. CLI + importable funcs."""
 import os
 import sys
+import hashlib
 import json as _json
 from datetime import datetime, timezone, timedelta
 from dotenv import load_dotenv
@@ -11,6 +12,11 @@ load_dotenv()
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def _job_hash(url: str) -> str:
+    """Match the pipeline's convention (pipeline/db.py) so we don't duplicate."""
+    return hashlib.md5(url.encode()).hexdigest()[:12]
 
 
 def get_client() -> Client:
@@ -61,6 +67,26 @@ def get_due_followups(client: Client) -> list[dict]:
         if now - sent >= threshold:
             due.append(r)
     return due
+
+
+def add_job(client: Client, p: dict) -> str:
+    """Insert a discovered job (Lorikeet/web) so picks can reference it. Returns
+    the job id. If the URL already exists, returns that id untouched (never resets
+    an already-reviewed job)."""
+    url = p["url"]
+    h = _job_hash(url)
+    existing = client.table("jobs").select("id").eq("url_hash", h).execute().data
+    if existing:
+        return existing[0]["id"]
+    row = {
+        "url": url, "url_hash": h,
+        "title": p.get("title", ""), "company": p.get("company", ""),
+        "location": p.get("location", ""), "source": p.get("source", "discovery"),
+        "relevant": True, "is_active": True,
+        "last_seen": _now(), "date_added": _now(),
+    }
+    res = client.table("jobs").insert(row).execute()
+    return (res.data or [{}])[0].get("id", "ok")
 
 
 def save_pick(client: Client, p: dict) -> str:
@@ -119,6 +145,7 @@ def log_activity(client: Client, p: dict) -> str:
 _COMMANDS = {
     "get-jobs-to-review": lambda c, a: get_jobs_to_review(c, int(a.get("limit", 100))),
     "get-due-followups":  lambda c, a: get_due_followups(c),
+    "add-job":            lambda c, a: add_job(c, a),
     "save-pick":          lambda c, a: save_pick(c, a),
     "mark-skipped":       lambda c, a: mark_skipped(c, a["job_id"], a.get("reasoning", "")),
     "save-contact":       lambda c, a: save_contact(c, a),
