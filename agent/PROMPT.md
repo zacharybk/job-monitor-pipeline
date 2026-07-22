@@ -18,7 +18,9 @@ python: `/Users/zach/.venv/bin/python`.
   disclosed funding is often stale or mid-raise, and comp is a conversation, not
   a Crunchbase inference. The $150K+ figure is Zach's target, not a gate — only
   down-weight comp if the POSTING ITSELF explicitly lists a max below ~$130K.
-- Lead positioning with Measured. Marble Health = light color only.
+- **Scope/seniority fit (bigger title ≠ better).** Zach wants to BUILD or be an early/first CX-ops leader at seed→growth companies. A role running a large, already-established CS org at a big/late-stage company (many existing managers, huge headcount) is NOT a fit even if the title is impressive — skip unless it's explicitly a build/transform/0-to-1 mandate. He will not be hired to run a 50-person enterprise CS machine, and doesn't want to.
+- **Location, strictly US-remote.** If a role names a specific office city as its base (e.g. "New York", "· NYC") and isn't clearly remote-from-anywhere-US, skip it. "Remote" must mean US-remote, not "remote but sit in this metro."
+- Lead positioning with Measured. Marble Health = light color only, and describe it in the PAST tense (a recently completed consulting project — never "currently consult").
 - All reads/writes go through the CLIs below — never write SQL directly.
 - Idempotent: re-running must not duplicate. The CLIs upsert; trust them.
 

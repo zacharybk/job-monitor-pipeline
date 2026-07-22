@@ -67,7 +67,8 @@
   .st.drafted{background:var(--chip);color:var(--muted)}
   .st.applied,.st.sent{background:color-mix(in srgb,var(--brand) 15%,transparent);color:var(--brand)}
   .st.interviewing,.st.replied{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
-  .st.rejected,.st.closed{background:color-mix(in srgb,var(--bad) 13%,transparent);color:var(--bad)}
+  .st.rejected,.st.closed,.st.bounced{background:color-mix(in srgb,var(--bad) 13%,transparent);color:var(--bad)}
+  .st.awaiting{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
   .empty{text-align:center;color:var(--muted);padding:34px 10px}
   .scroll{overflow-x:auto}
   /* login */
@@ -209,15 +210,19 @@ function viewToday(){
   }).join('');
 }
 function draftBlock(o){
-  const c=o.contacts||{}; const sent=o.status!=='drafted';
+  const c=o.contacts||{}; const s=o.status;
+  const label=s==='sent'?'awaiting reply':s;
+  const chipCls=s==='sent'?'awaiting':esc(s);
   return `<div class="draft">
-    <div class="to">To: ${esc(c.name||'')}${c.role?' · '+esc(c.role):''} &lt;${esc(c.email||'—')}&gt;</div>
+    <div class="to">To: ${esc(c.name||'')}${c.role?' · '+esc(c.role):''} &lt;${esc(c.email||'—')}&gt; <span class="st ${chipCls}">${esc(label)}</span></div>
     <div class="subj">${esc(o.subject||'')}</div>
     <pre>${esc(o.body||'')}</pre>
     <div class="acts">
       <a class="btn sec" href="https://mail.google.com/mail/u/0/#drafts" target="_blank">Open in Gmail ↗</a>
-      <button class="btn ${sent?'good':'pri'}" data-act="sent" data-out="${o.id}" ${sent?'disabled':''}>${sent?'✓ Sent':'Mark sent'}</button>
-      ${sent&&o.status!=='replied'?`<button class="btn good" data-act="replied" data-out="${o.id}">Got a reply</button>`:''}
+      ${s==='drafted'?`<button class="btn pri" data-act="sent" data-out="${o.id}">Mark sent</button>`:''}
+      ${s==='sent'?`<button class="btn good" data-act="replied" data-out="${o.id}">Got a reply</button>
+        <button class="btn sec" data-act="bounced" data-out="${o.id}">Bounced</button>`:''}
+      ${(s==='replied'||s==='bounced')?`<button class="btn sec" data-act="reopen" data-out="${o.id}">Undo</button>`:''}
     </div>
   </div>`;
 }
@@ -225,16 +230,31 @@ function draftBlock(o){
 /* ---------- PIPELINE ---------- */
 function viewPipeline(){
   const apps=cache.apps||[], out=cache.outreach||[];
-  const appRows=apps.map(a=>`<tr><td><b>${esc(a.jobs?.company||'')}</b><br><span class="muted">${esc(a.jobs?.title||'')}</span></td>
-    <td><span class="st ${esc(a.status)}">${esc(a.status)}</span></td>
-    <td class="muted">${a.applied_at?new Date(a.applied_at).toLocaleDateString():'—'}</td></tr>`).join('');
-  const outRows=out.map(o=>`<tr><td><b>${esc(o.contacts?.company||'')}</b><br><span class="muted">${esc(o.contacts?.name||'')} · step ${o.sequence_step}</span></td>
-    <td><span class="st ${esc(o.status)}">${esc(o.status)}</span></td>
-    <td class="muted">${o.sent_at?new Date(o.sent_at).toLocaleDateString():'—'}</td></tr>`).join('');
-  return `<div class="card"><h3 style="margin:0 0 8px">Applications</h3><div class="scroll"><table>
-    <tr><th>Role</th><th>Status</th><th>Applied</th></tr>${appRows||'<tr><td colspan=3 class="empty">None yet</td></tr>'}</table></div></div>
-   <div class="card"><h3 style="margin:0 0 8px">Outreach</h3><div class="scroll"><table>
-    <tr><th>Contact</th><th>Status</th><th>Sent</th></tr>${outRows||'<tr><td colspan=3 class="empty">None yet</td></tr>'}</table></div></div>`;
+  if(!apps.length && !out.length) return `<div class="card empty">Nothing in the pipeline yet.</div>`;
+  const byJob={};
+  apps.forEach(a=>{ const k=a.job_id||('a'+a.id); (byJob[k]=byJob[k]||{app:null,people:[],job:null}); byJob[k].app=a; if(a.jobs)byJob[k].job=a.jobs; });
+  out.forEach(o=>{ const k=o.job_id||('c'+o.id); (byJob[k]=byJob[k]||{app:null,people:[],job:null}); byJob[k].people.push(o); });
+  return Object.values(byJob).map(g=>{
+    const j=g.job||{}, a=g.app;
+    const people=g.people.map(o=>{
+      const c=o.contacts||{}; const s=o.status;
+      const chip=s==='sent'?'awaiting':esc(s); const lbl=s==='sent'?'awaiting reply':s;
+      return `<tr><td><b>${esc(c.name||'—')}</b><br><span class="muted">${esc(c.role||'')}</span></td>
+        <td class="muted">${esc(c.email||'—')}</td>
+        <td><span class="st ${chip}">${esc(lbl)}</span></td></tr>`;
+    }).join('');
+    const company=j.company||g.people[0]?.contacts?.company||'—';
+    return `<div class="card">
+      <div class="row">
+        <span class="company">${esc(company)}</span>
+        ${a?`<span class="st ${esc(a.status)}">${esc(a.status)}</span>`:''}
+        ${j.url?`<a href="${esc(j.url)}" target="_blank" style="margin-left:auto;font-size:12.5px">Open role ↗</a>`:''}
+      </div>
+      ${j.title?`<div class="title">${esc(j.title)}</div>`:''}
+      ${people?`<div class="scroll"><table style="margin-top:10px">
+        <tr><th>Person</th><th>Email</th><th>Status</th></tr>${people}</table></div>`:'<p class="muted" style="margin-top:8px;font-size:13px">No contacts yet.</p>'}
+    </div>`;
+  }).join('');
 }
 
 /* ---------- MOMENTUM ---------- */
@@ -269,9 +289,11 @@ function wireActions(){
     try{
       if(act==='applied'){ await sb.from('applications').update({status:'applied',applied_at:new Date().toISOString()}).eq('job_id',el.dataset.job);
         await sb.from('picks').update({user_decision:'applied',decided_at:new Date().toISOString()}).eq('job_id',el.dataset.job); toast('Marked applied'); }
-      if(act==='skip'){ await sb.from('picks').update({user_decision:'skip',decided_at:new Date().toISOString()}).eq('id',el.dataset.pick); toast('Skipped'); }
+      if(act==='skip'){ const why=(prompt('Not a fit — why? (a word or two helps the agent learn: too senior, wrong location, comp, domain…)')||'').trim(); await sb.from('picks').update({user_decision:'skip',user_note:why,decided_at:new Date().toISOString()}).eq('id',el.dataset.pick); toast('Skipped — thanks, that tunes the agent'); }
       if(act==='sent'){ await sb.from('outreach').update({status:'sent',sent_at:new Date().toISOString()}).eq('id',el.dataset.out); toast('Marked sent — nice rep'); }
       if(act==='replied'){ await sb.from('outreach').update({status:'replied',reply_at:new Date().toISOString()}).eq('id',el.dataset.out); toast('A reply! 🎉'); }
+      if(act==='bounced'){ await sb.from('outreach').update({status:'bounced'}).eq('id',el.dataset.out); toast('Marked bounced — bad email'); }
+      if(act==='reopen'){ await sb.from('outreach').update({status:'sent',reply_at:null}).eq('id',el.dataset.out); toast('Reopened'); }
       await loadAll(); paintHealth(); paint();
     }catch(e){ toast('Error: '+e.message); el.disabled=false; }
   });
