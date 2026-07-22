@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Job Search — Command Center</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#14161a; --muted:#6b7280; --line:#e5e7eb;
+    --brand:#3b5bdb; --brand-ink:#fff; --good:#16a34a; --warn:#d97706; --bad:#dc2626;
+    --chip:#eef1f6; --shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.05);
+    --radius:14px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0e1013;--card:#171a1f;--ink:#e8eaed;--muted:#9aa1ac;--line:#262a31;
+      --brand:#7c93f5;--brand-ink:#0e1013;--chip:#20242b;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);}
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--brand)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 16px 96px}
+  header{position:sticky;top:0;z-index:10;background:var(--bg);padding:14px 0 10px;border-bottom:1px solid var(--line)}
+  .top{display:flex;align-items:center;gap:10px}
+  .top h1{font-size:17px;margin:0;font-weight:650;letter-spacing:-.2px}
+  .pill{margin-left:auto;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+  .pill .dot{width:8px;height:8px;border-radius:50%}
+  .pill.ok{background:color-mix(in srgb,var(--good) 14%,transparent);color:var(--good)}
+  .pill.stale{background:color-mix(in srgb,var(--bad) 14%,transparent);color:var(--bad)}
+  .ghost{background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer}
+  nav{display:flex;gap:6px;margin-top:12px}
+  nav button{flex:1;background:var(--chip);border:1px solid transparent;color:var(--muted);font-weight:600;font-size:13.5px;padding:9px;border-radius:10px;cursor:pointer}
+  nav button.active{background:var(--brand);color:var(--brand-ink)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin:14px 0}
+  .muted{color:var(--muted)}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .company{font-weight:680;font-size:15.5px;letter-spacing:-.2px}
+  .title{font-size:14px}
+  .badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+  .badge.top{background:color-mix(in srgb,var(--brand) 16%,transparent);color:var(--brand)}
+  .badge.angle{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+  .reason{margin:8px 0 0;color:var(--muted);font-size:13.5px}
+  .rubric{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .rubric span{font-size:11px;background:var(--chip);border-radius:6px;padding:2px 7px;color:var(--muted)}
+  .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .btn{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:650;cursor:pointer}
+  .btn.pri{background:var(--brand);color:var(--brand-ink)}
+  .btn.sec{background:var(--chip);color:var(--ink)}
+  .btn.good{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
+  .btn:disabled{opacity:.5;cursor:default}
+  .draft{border:1px solid var(--line);border-radius:10px;padding:11px;margin-top:10px;background:color-mix(in srgb,var(--chip) 40%,transparent)}
+  .draft .to{font-size:12.5px;color:var(--muted)}
+  .draft .subj{font-weight:620;font-size:13.5px;margin:3px 0}
+  .draft pre{white-space:pre-wrap;font:inherit;margin:6px 0 0;color:var(--ink);font-size:13px}
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(min-width:560px){.stats{grid-template-columns:repeat(4,1fr)}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .stat .n{font-size:26px;font-weight:720;letter-spacing:-.5px}
+  .stat .l{font-size:12px;color:var(--muted);margin-top:2px}
+  .stat .bar{height:5px;border-radius:3px;background:var(--chip);margin-top:9px;overflow:hidden}
+  .stat .bar>i{display:block;height:100%;background:var(--brand);border-radius:3px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:700}
+  .st{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;text-transform:capitalize}
+  .st.drafted{background:var(--chip);color:var(--muted)}
+  .st.applied,.st.sent{background:color-mix(in srgb,var(--brand) 15%,transparent);color:var(--brand)}
+  .st.interviewing,.st.replied{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
+  .st.rejected,.st.closed{background:color-mix(in srgb,var(--bad) 13%,transparent);color:var(--bad)}
+  .empty{text-align:center;color:var(--muted);padding:34px 10px}
+  .scroll{overflow-x:auto}
+  /* login */
+  .login{max-width:380px;margin:12vh auto;padding:26px;text-align:center}
+  .login h1{font-size:20px;margin:0 0 4px}
+  .login p{color:var(--muted);margin:0 0 18px;font-size:14px}
+  .login input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font-size:15px;margin-bottom:10px}
+  .login .btn.pri{width:100%;padding:11px}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;opacity:0;transition:.25s;pointer-events:none;z-index:50}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div id="app"><div class="empty">Loading…</div></div>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const SUPABASE_URL = 'https://lyaxzyjqvfwphcmmmibt.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5YXh6eWpxdmZ3cGhjbW1taWJ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3MjM1NzIsImV4cCI6MjA4ODI5OTU3Mn0.6lJUy2aAwnzl5JJRxGLJYgZ7B0nVqiNeaEwJ0xNmRpw';
+const WEEKLY_EMAIL_TARGET = 60, WEEKLY_APP_TARGET = 20;
+const DEMO = new URLSearchParams(location.search).has('demo');
+
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON);
+const app = document.getElementById('app');
+const esc = s => (s??'').toString().replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let view = 'today', cache = {};
+
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+function startOfWeek(){const d=new Date();const day=(d.getDay()+6)%7;d.setHours(0,0,0,0);d.setDate(d.getDate()-day);return d;}
+function startOfMonth(){const d=new Date();return new Date(d.getFullYear(),d.getMonth(),1);}
+
+/* ---------- AUTH ---------- */
+async function boot(){
+  if(DEMO){ return renderApp(demoData()); }
+  const { data:{ session } } = await sb.auth.getSession();
+  if(!session){ return renderLogin(); }
+  renderApp();
+}
+function renderLogin(step){
+  app.innerHTML = `<div class="card login">
+    <h1>Job Search</h1><p>Your command center. Sign in with your email.</p>
+    <div id="lf"></div></div>`;
+  const lf=document.getElementById('lf');
+  if(step==='code'){
+    lf.innerHTML=`<input id="code" inputmode="numeric" placeholder="6-digit code from email"/>
+      <button class="btn pri" id="verify">Verify & enter</button>
+      <p class="muted" style="margin-top:10px;font-size:12px">Sent to ${esc(sessionStorage.otpEmail)}</p>`;
+    document.getElementById('verify').onclick=async()=>{
+      const token=document.getElementById('code').value.trim();
+      const {error}=await sb.auth.verifyOtp({email:sessionStorage.otpEmail,token,type:'email'});
+      if(error) return toast(error.message);
+      renderApp();
+    };
+  } else {
+    lf.innerHTML=`<input id="email" type="email" placeholder="you@email.com" value="zacharybk@gmail.com"/>
+      <button class="btn pri" id="send">Email me a code</button>`;
+    document.getElementById('send').onclick=async()=>{
+      const email=document.getElementById('email').value.trim();
+      const {error}=await sb.auth.signInWithOtp({email,options:{shouldCreateUser:true}});
+      if(error) return toast(error.message);
+      sessionStorage.otpEmail=email; renderLogin('code');
+    };
+  }
+}
+
+/* ---------- APP SHELL ---------- */
+async function renderApp(demo){
+  if(demo) cache=demo;
+  app.innerHTML=`<div class="wrap">
+    <header>
+      <div class="top">
+        <h1>Job Search</h1>
+        <span id="health" class="pill ok"><span class="dot"></span>…</span>
+        <button class="ghost" id="logout">Sign out</button>
+      </div>
+      <nav>
+        <button data-v="today">Today</button>
+        <button data-v="pipeline">Pipeline</button>
+        <button data-v="momentum">Momentum</button>
+      </nav>
+    </header>
+    <main id="main"><div class="empty">Loading…</div></main>
+  </div>`;
+  document.getElementById('logout').onclick=async()=>{ if(!DEMO) await sb.auth.signOut(); location.reload(); };
+  app.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{view=b.dataset.v;paint();});
+  if(!demo) await loadAll();
+  paintHealth(); paint();
+}
+function paint(){
+  app.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===view));
+  const m=document.getElementById('main');
+  m.innerHTML = view==='today'?viewToday():view==='pipeline'?viewPipeline():viewMomentum();
+  wireActions();
+}
+
+/* ---------- DATA ---------- */
+async function loadAll(){
+  if(DEMO) return;
+  const q = async (t,sel,mod)=>{ let r=sb.from(t).select(sel); if(mod) r=mod(r); const {data,error}=await r; if(error)console.warn(t,error.message); return data||[]; };
+  cache.picks = await q('picks','*, jobs(title,company,url,location)', r=>r.order('rank',{ascending:true}));
+  cache.outreach = await q('outreach','*, contacts(name,role,email,company)', r=>r.order('drafted_at',{ascending:false}));
+  cache.apps = await q('applications','*, jobs(title,company,url)', r=>r.order('created_at',{ascending:false}));
+  cache.activity = await q('activity_log','*', r=>r.order('day',{ascending:false}).limit(30));
+}
+
+/* ---------- HEALTH PILL ---------- */
+function paintHealth(){
+  const el=document.getElementById('health'); if(!el)return;
+  const last=(cache.activity||[])[0];
+  const ran = last?.agent_ran_at ? new Date(last.agent_ran_at) : null;
+  const today = ran && (new Date().toDateString()===ran.toDateString());
+  if(today){ el.className='pill ok'; el.innerHTML=`<span class="dot" style="background:var(--good)"></span>Ran today`; }
+  else if(ran){ el.className='pill stale'; el.innerHTML=`<span class="dot" style="background:var(--bad)"></span>Last run ${ran.toLocaleDateString(undefined,{month:'short',day:'numeric'})}`; }
+  else { el.className='pill stale'; el.innerHTML=`<span class="dot" style="background:var(--bad)"></span>No runs yet`; }
+}
+
+/* ---------- TODAY ---------- */
+function viewToday(){
+  const picks=(cache.picks||[]).filter(p=>!p.user_decision||p.user_decision==='pursue');
+  if(!picks.length) return `<div class="card empty">No open picks right now.<br><span class="muted">The agent runs at 7am, or run <code>applyme</code> anytime.</span></div>`;
+  return picks.map(p=>{
+    const j=p.jobs||{};
+    const drafts=(cache.outreach||[]).filter(o=>o.job_id===p.job_id);
+    const app=(cache.apps||[]).find(a=>a.job_id===p.job_id);
+    const r=p.fit_rubric||{};
+    return `<div class="card">
+      <div class="row">
+        <span class="company">${esc(j.company)}</span>
+        <span class="badge ${p.tier==='top'?'top':''}">${esc(p.tier||'')}</span>
+        ${p.fit_verdict==='apply_with_angle'?'<span class="badge angle">angle</span>':''}
+        ${j.url?`<a href="${esc(j.url)}" target="_blank" style="margin-left:auto;font-size:12.5px">Open posting ↗</a>`:''}
+      </div>
+      <div class="title">${esc(j.title)} · <span class="muted">${esc(j.location||'')}</span></div>
+      <p class="reason">${esc(p.reasoning||'')}</p>
+      ${Object.keys(r).length?`<div class="rubric">${Object.entries(r).map(([k,v])=>`<span>${esc(k)}: ${esc(v)}</span>`).join('')}</div>`:''}
+      <div class="acts">
+        <button class="btn ${app&&app.status!=='drafted'?'good':'pri'}" data-act="applied" data-job="${p.job_id}" ${app&&app.status!=='drafted'?'disabled':''}>${app&&app.status!=='drafted'?'✓ Applied':'Mark applied'}</button>
+        <button class="btn sec" data-act="skip" data-pick="${p.id}">Not for me</button>
+      </div>
+      ${drafts.map(o=>draftBlock(o)).join('')}
+    </div>`;
+  }).join('');
+}
+function draftBlock(o){
+  const c=o.contacts||{}; const sent=o.status!=='drafted';
+  return `<div class="draft">
+    <div class="to">To: ${esc(c.name||'')}${c.role?' · '+esc(c.role):''} &lt;${esc(c.email||'—')}&gt;</div>
+    <div class="subj">${esc(o.subject||'')}</div>
+    <pre>${esc(o.body||'')}</pre>
+    <div class="acts">
+      <a class="btn sec" href="https://mail.google.com/mail/u/0/#drafts" target="_blank">Open in Gmail ↗</a>
+      <button class="btn ${sent?'good':'pri'}" data-act="sent" data-out="${o.id}" ${sent?'disabled':''}>${sent?'✓ Sent':'Mark sent'}</button>
+      ${sent&&o.status!=='replied'?`<button class="btn good" data-act="replied" data-out="${o.id}">Got a reply</button>`:''}
+    </div>
+  </div>`;
+}
+
+/* ---------- PIPELINE ---------- */
+function viewPipeline(){
+  const apps=cache.apps||[], out=cache.outreach||[];
+  const appRows=apps.map(a=>`<tr><td><b>${esc(a.jobs?.company||'')}</b><br><span class="muted">${esc(a.jobs?.title||'')}</span></td>
+    <td><span class="st ${esc(a.status)}">${esc(a.status)}</span></td>
+    <td class="muted">${a.applied_at?new Date(a.applied_at).toLocaleDateString():'—'}</td></tr>`).join('');
+  const outRows=out.map(o=>`<tr><td><b>${esc(o.contacts?.company||'')}</b><br><span class="muted">${esc(o.contacts?.name||'')} · step ${o.sequence_step}</span></td>
+    <td><span class="st ${esc(o.status)}">${esc(o.status)}</span></td>
+    <td class="muted">${o.sent_at?new Date(o.sent_at).toLocaleDateString():'—'}</td></tr>`).join('');
+  return `<div class="card"><h3 style="margin:0 0 8px">Applications</h3><div class="scroll"><table>
+    <tr><th>Role</th><th>Status</th><th>Applied</th></tr>${appRows||'<tr><td colspan=3 class="empty">None yet</td></tr>'}</table></div></div>
+   <div class="card"><h3 style="margin:0 0 8px">Outreach</h3><div class="scroll"><table>
+    <tr><th>Contact</th><th>Status</th><th>Sent</th></tr>${outRows||'<tr><td colspan=3 class="empty">None yet</td></tr>'}</table></div></div>`;
+}
+
+/* ---------- MOMENTUM ---------- */
+function viewMomentum(){
+  const out=cache.outreach||[], apps=cache.apps||[];
+  const wk=startOfWeek(), mo=startOfMonth();
+  const sentWeek=out.filter(o=>o.sent_at&&new Date(o.sent_at)>=wk).length;
+  const appsWeek=apps.filter(a=>a.applied_at&&new Date(a.applied_at)>=wk).length;
+  const replies=out.filter(o=>o.status==='replied').length;
+  const interviews=apps.filter(a=>a.status==='interviewing').length;
+  const draftsReady=out.filter(o=>o.status==='drafted').length;
+  const bar=(n,t)=>`<div class="bar"><i style="width:${Math.min(100,Math.round(n/t*100))}%"></i></div>`;
+  return `<div class="stats">
+    <div class="stat"><div class="n">${sentWeek}<span class="muted" style="font-size:14px">/${WEEKLY_EMAIL_TARGET}</span></div><div class="l">Emails sent · this week</div>${bar(sentWeek,WEEKLY_EMAIL_TARGET)}</div>
+    <div class="stat"><div class="n">${appsWeek}<span class="muted" style="font-size:14px">/${WEEKLY_APP_TARGET}</span></div><div class="l">Applications · this week</div>${bar(appsWeek,WEEKLY_APP_TARGET)}</div>
+    <div class="stat"><div class="n">${replies}</div><div class="l">Replies</div></div>
+    <div class="stat"><div class="n">${interviews}</div><div class="l">Interviews</div></div>
+  </div>
+  <div class="card">
+    <div class="row"><b>${draftsReady}</b><span class="muted">drafts ready to review in Today</span></div>
+    <div class="row" style="margin-top:8px"><b>${apps.length}</b><span class="muted">total applications ·</span> <b>${out.length}</b><span class="muted">total outreach emails</span></div>
+    <p class="muted" style="margin:12px 0 0;font-size:13px">Every email you send is a rep. 60 sharp ones a week beats 200 sprayed. Keep the streak.</p>
+  </div>`;
+}
+
+/* ---------- ACTIONS ---------- */
+function wireActions(){
+  app.querySelectorAll('[data-act]').forEach(el=>el.onclick=async()=>{
+    const act=el.dataset.act;
+    if(DEMO){ toast('Demo mode — no changes saved'); return; }
+    el.disabled=true;
+    try{
+      if(act==='applied'){ await sb.from('applications').update({status:'applied',applied_at:new Date().toISOString()}).eq('job_id',el.dataset.job);
+        await sb.from('picks').update({user_decision:'applied',decided_at:new Date().toISOString()}).eq('job_id',el.dataset.job); toast('Marked applied'); }
+      if(act==='skip'){ await sb.from('picks').update({user_decision:'skip',decided_at:new Date().toISOString()}).eq('id',el.dataset.pick); toast('Skipped'); }
+      if(act==='sent'){ await sb.from('outreach').update({status:'sent',sent_at:new Date().toISOString()}).eq('id',el.dataset.out); toast('Marked sent — nice rep'); }
+      if(act==='replied'){ await sb.from('outreach').update({status:'replied',reply_at:new Date().toISOString()}).eq('id',el.dataset.out); toast('A reply! 🎉'); }
+      await loadAll(); paintHealth(); paint();
+    }catch(e){ toast('Error: '+e.message); el.disabled=false; }
+  });
+}
+
+/* ---------- DEMO DATA ---------- */
+function demoData(){
+  const jid='demo-job';
+  return {
+    picks:[{id:'p1',job_id:jid,tier:'top',fit_verdict:'apply',rank:1,reasoning:'Seed-stage AI CX company; you would be the first CX/ops hire — exact first-hire thesis.',fit_rubric:{stage:'High',comp:'Med',remote:'High',scope:'High',ai:'High',domain:'Med'},jobs:{title:'Head of Customer Experience',company:'ExampleAI',location:'Remote · US',url:'#'}}],
+    outreach:[{id:'o1',job_id:jid,status:'drafted',sequence_step:1,subject:'Head of CX role at ExampleAI',body:"Hi Dana,\n\nI'm reaching out about your Head of CX role. I scaled support from 8 to 80 at DigitalOcean and built AI agents at Measured that automated 70% of a manual workflow. Would you have 20 minutes?\n\nThanks,\nZach",contacts:{name:'Dana Lee',role:'CEO',email:'dana@exampleai.com',company:'ExampleAI'}}],
+    apps:[{id:'a1',job_id:jid,status:'drafted',jobs:{title:'Head of Customer Experience',company:'ExampleAI'}}],
+    activity:[{day:new Date().toISOString().slice(0,10),agent_ran_at:new Date().toISOString(),picks_made:1}]
+  };
+}
+
+if(!DEMO) sb.auth.onAuthStateChange((e)=>{ if(e==='SIGNED_OUT') renderLogin(); });
+boot();
+</script>
+</body>
+</html>
