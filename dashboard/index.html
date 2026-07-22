@@ -219,7 +219,8 @@ function draftBlock(o){
     <pre>${esc(o.body||'')}</pre>
     <div class="acts">
       <a class="btn sec" href="https://mail.google.com/mail/u/0/#drafts" target="_blank">Open in Gmail ↗</a>
-      ${s==='drafted'?`<button class="btn pri" data-act="sent" data-out="${o.id}">Mark sent</button>`:''}
+      ${s==='drafted'?`<button class="btn pri" data-act="sent" data-out="${o.id}">Mark sent</button>
+        <button class="btn sec" data-act="bounced" data-out="${o.id}">Bounced</button>`:''}
       ${s==='sent'?`<button class="btn good" data-act="replied" data-out="${o.id}">Got a reply</button>
         <button class="btn sec" data-act="bounced" data-out="${o.id}">Bounced</button>`:''}
       ${(s==='replied'||s==='bounced')?`<button class="btn sec" data-act="reopen" data-out="${o.id}">Undo</button>`:''}
@@ -236,13 +237,6 @@ function viewPipeline(){
   out.forEach(o=>{ const k=o.job_id||('c'+o.id); (byJob[k]=byJob[k]||{app:null,people:[],job:null}); byJob[k].people.push(o); });
   return Object.values(byJob).map(g=>{
     const j=g.job||{}, a=g.app;
-    const people=g.people.map(o=>{
-      const c=o.contacts||{}; const s=o.status;
-      const chip=s==='sent'?'awaiting':esc(s); const lbl=s==='sent'?'awaiting reply':s;
-      return `<tr><td><b>${esc(c.name||'—')}</b><br><span class="muted">${esc(c.role||'')}</span></td>
-        <td class="muted">${esc(c.email||'—')}</td>
-        <td><span class="st ${chip}">${esc(lbl)}</span></td></tr>`;
-    }).join('');
     const company=j.company||g.people[0]?.contacts?.company||'—';
     return `<div class="card">
       <div class="row">
@@ -251,8 +245,7 @@ function viewPipeline(){
         ${j.url?`<a href="${esc(j.url)}" target="_blank" style="margin-left:auto;font-size:12.5px">Open role ↗</a>`:''}
       </div>
       ${j.title?`<div class="title">${esc(j.title)}</div>`:''}
-      ${people?`<div class="scroll"><table style="margin-top:10px">
-        <tr><th>Person</th><th>Email</th><th>Status</th></tr>${people}</table></div>`:'<p class="muted" style="margin-top:8px;font-size:13px">No contacts yet.</p>'}
+      ${g.people.map(o=>draftBlock(o)).join('')||'<p class="muted" style="margin-top:8px;font-size:13px">No contacts yet.</p>'}
     </div>`;
   }).join('');
 }
