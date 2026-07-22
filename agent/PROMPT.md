@@ -86,13 +86,18 @@ python: `/Users/zach/.venv/bin/python`.
         using the `/apply` format, then
         `... -m agent.store save-application --json '{"job_id":"…",
         "cover_letter_path":"…"}'`.
-     c. Find 2–3 people (founder/CEO, hiring manager, seed investor). For each,
-        determine the company email domain and run
+     c. **Warm path first.** Run `... -m agent.store warm-path --json
+        '{"company":"<company>"}'`. If it returns anyone, Zach is already connected
+        to them — prepend "Warm intro: connected to <name> (<role>)" to the pick's
+        reasoning, and prefer drafting outreach to that person (or referencing the
+        mutual) over a cold contact. A warm path is worth more than a perfect email.
+     d. Find 2–3 people (founder/CEO, hiring manager, seed investor — plus any warm
+        connection from step c). For each, determine the company email domain and run
         `... -m agent.contacts --first First --last Last --domain company.com`.
         Save each: `... -m agent.store save-contact --json '{"company":"…",
         "name":"…","role":"…","email":"…","email_source":"…","confidence":"…",
         "linkedin_url":"…","job_id":"…"}'` — capture the returned contact id.
-     d. Draft one outreach email per contact (subject + body, per the `/apply`
+     e. Draft one outreach email per contact (subject + body, per the `/apply`
         voice guide and non-negotiables: warm named open, lead with a specific
         reason, short, confident close, no AI filler). **Do NOT claim Zach has
         already applied or done anything he hasn't** — he applies manually and

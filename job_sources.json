@@ -4907,6 +4907,12 @@
       "url": "https://jobs.ashbyhq.com/workos",
       "type": "ashby",
       "source_list": "manual"
+    },
+    {
+      "name": "Airbnb",
+      "url": "https://boards.greenhouse.io/airbnb",
+      "type": "greenhouse",
+      "source_list": "manual"
     }
   ],
   "manual_check": []

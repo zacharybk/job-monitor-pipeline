@@ -128,6 +128,19 @@ def save_application(client: Client, p: dict) -> str:
     return (res.data or [{}])[0].get("id", "ok")
 
 
+def warm_path(client: Client, company: str) -> list[dict]:
+    """People in Zach's LinkedIn connections at the given company (warm intros)."""
+    import re
+    norm = re.sub(r"[,.]", "", (company or "").lower()).strip()
+    key = norm.split()[0] if norm else ""
+    if not key:
+        return []
+    r = (client.table("connections")
+         .select("first_name,last_name,position,company,linkedin_url,email")
+         .ilike("company_norm", f"%{key}%").limit(10).execute())
+    return r.data or []
+
+
 def log_activity(client: Client, p: dict) -> str:
     row = {"day": datetime.now(timezone.utc).date().isoformat(), "agent_ran_at": _now()}
     for k in ("jobs_reviewed", "picks_made", "emails_drafted", "emails_sent",
@@ -145,6 +158,7 @@ def log_activity(client: Client, p: dict) -> str:
 _COMMANDS = {
     "get-jobs-to-review": lambda c, a: get_jobs_to_review(c, int(a.get("limit", 100))),
     "get-due-followups":  lambda c, a: get_due_followups(c),
+    "warm-path":          lambda c, a: warm_path(c, a["company"]),
     "add-job":            lambda c, a: add_job(c, a),
     "save-pick":          lambda c, a: save_pick(c, a),
     "mark-skipped":       lambda c, a: mark_skipped(c, a["job_id"], a.get("reasoning", "")),
