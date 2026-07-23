@@ -200,7 +200,7 @@ function viewToday(){
       </div>
       <div class="title">${esc(j.title)} · <span class="muted">${esc(j.location||'')}</span></div>
       <p class="reason">${esc(p.reasoning||'')}</p>
-      ${Object.keys(r).length?`<div class="rubric">${Object.entries(r).map(([k,v])=>`<span>${esc(k)}: ${esc(v)}</span>`).join('')}</div>`:''}
+      ${rubricChips(r)}
       <div class="acts">
         <button class="btn ${app&&app.status!=='drafted'?'good':'pri'}" data-act="applied" data-job="${p.job_id}" ${app&&app.status!=='drafted'?'disabled':''}>${app&&app.status!=='drafted'?'✓ Applied':'Mark applied'}</button>
         <button class="btn sec" data-act="skip" data-pick="${p.id}">Not for me</button>
@@ -208,6 +208,16 @@ function viewToday(){
       ${drafts.map(o=>draftBlock(o)).join('')}
     </div>`;
   }).join('');
+}
+function rubricChips(r){
+  // fit_rubric may be a JSON object {stage,comp,...} or a plain string
+  // ("stage:high(...); comp:med(...)"). Render either as chips; never iterate a string's chars.
+  if(!r) return '';
+  let parts=[];
+  if(typeof r==='string'){ parts=r.split(/;\s*/).filter(Boolean); }
+  else if(typeof r==='object'){ parts=Object.entries(r).map(([k,v])=>`${k}: ${v}`); }
+  if(!parts.length) return '';
+  return `<div class="rubric">${parts.map(p=>`<span>${esc(p)}</span>`).join('')}</div>`;
 }
 function draftBlock(o){
   const c=o.contacts||{}; const s=o.status;
