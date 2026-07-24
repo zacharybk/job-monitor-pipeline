@@ -53,6 +53,11 @@
   .draft .to{font-size:12.5px;color:var(--muted)}
   .draft .subj{font-weight:620;font-size:13.5px;margin:3px 0}
   .draft pre{white-space:pre-wrap;font:inherit;margin:6px 0 0;color:var(--ink);font-size:13px}
+  details.cl{margin-top:10px;border:1px solid var(--line);border-radius:10px;background:color-mix(in srgb,var(--chip) 40%,transparent)}
+  details.cl summary{cursor:pointer;padding:9px 12px;font-size:13px;font-weight:650;color:var(--brand);list-style:none}
+  details.cl summary::before{content:"📄 ";}
+  details.cl[open] summary{border-bottom:1px solid var(--line)}
+  details.cl pre{white-space:pre-wrap;font:inherit;font-size:12.5px;margin:0;padding:11px 12px;color:var(--ink)}
   .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
   @media(min-width:560px){.stats{grid-template-columns:repeat(4,1fr)}}
   .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
@@ -205,6 +210,7 @@ function viewToday(){
         <button class="btn ${app&&app.status!=='drafted'?'good':'pri'}" data-act="applied" data-job="${p.job_id}" ${app&&app.status!=='drafted'?'disabled':''}>${app&&app.status!=='drafted'?'✓ Applied':'Mark applied'}</button>
         <button class="btn sec" data-act="skip" data-pick="${p.id}">Not for me</button>
       </div>
+      ${coverLetterBlock(app)}
       ${drafts.map(o=>draftBlock(o)).join('')}
     </div>`;
   }).join('');
@@ -218,6 +224,10 @@ function rubricChips(r){
   else if(typeof r==='object'){ parts=Object.entries(r).map(([k,v])=>`${k}: ${v}`); }
   if(!parts.length) return '';
   return `<div class="rubric">${parts.map(p=>`<span>${esc(p)}</span>`).join('')}</div>`;
+}
+function coverLetterBlock(app){
+  if(!app || !app.cover_letter_body) return '';
+  return `<details class="cl"><summary>Cover letter</summary><pre>${esc(app.cover_letter_body)}</pre></details>`;
 }
 function draftBlock(o){
   const c=o.contacts||{}; const s=o.status;
@@ -255,6 +265,7 @@ function viewPipeline(){
         ${j.url?`<a href="${esc(j.url)}" target="_blank" style="margin-left:auto;font-size:12.5px">Open role ↗</a>`:''}
       </div>
       ${j.title?`<div class="title">${esc(j.title)}</div>`:''}
+      ${coverLetterBlock(a)}
       ${g.people.map(o=>draftBlock(o)).join('')||'<p class="muted" style="margin-top:8px;font-size:13px">No contacts yet.</p>'}
     </div>`;
   }).join('');
@@ -308,7 +319,7 @@ function demoData(){
   return {
     picks:[{id:'p1',job_id:jid,tier:'top',fit_verdict:'apply',rank:1,reasoning:'Seed-stage AI CX company; you would be the first CX/ops hire — exact first-hire thesis.',fit_rubric:{stage:'High',comp:'Med',remote:'High',scope:'High',ai:'High',domain:'Med'},jobs:{title:'Head of Customer Experience',company:'ExampleAI',location:'Remote · US',url:'#'}}],
     outreach:[{id:'o1',job_id:jid,status:'drafted',sequence_step:1,subject:'Head of CX role at ExampleAI',body:"Hi Dana,\n\nI'm reaching out about your Head of CX role. I scaled support from 8 to 80 at DigitalOcean and built AI agents at Measured that automated 70% of a manual workflow. Would you have 20 minutes?\n\nThanks,\nZach",contacts:{name:'Dana Lee',role:'CEO',email:'dana@exampleai.com',company:'ExampleAI'}}],
-    apps:[{id:'a1',job_id:jid,status:'drafted',jobs:{title:'Head of Customer Experience',company:'ExampleAI'}}],
+    apps:[{id:'a1',job_id:jid,status:'drafted',cover_letter_body:'# ExampleAI — Head of Customer Experience\n\nHi ExampleAI Team,\n\nYour post says CX is a core differentiator, and that is exactly the kind of build I look for. I scaled support from 8 to 80 at DigitalOcean and deployed AI agents at Measured that automated 70% of a manual workflow.\n\nI would welcome the chance to talk.\n\nZach',jobs:{title:'Head of Customer Experience',company:'ExampleAI'}}],
     activity:[{day:new Date().toISOString().slice(0,10),agent_ran_at:new Date().toISOString(),picks_made:1}]
   };
 }

@@ -123,7 +123,7 @@ def save_outreach(client: Client, p: dict) -> str:
 
 
 def save_application(client: Client, p: dict) -> str:
-    row = {k: p.get(k) for k in ("job_id", "cover_letter_path", "notes")}
+    row = {k: p.get(k) for k in ("job_id", "cover_letter_path", "cover_letter_body", "notes")}
     res = client.table("applications").upsert(row, on_conflict="job_id").execute()
     return (res.data or [{}])[0].get("id", "ok")
 

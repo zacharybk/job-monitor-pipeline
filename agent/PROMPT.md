@@ -83,9 +83,10 @@ python: `/Users/zach/.venv/bin/python`.
         "tier":"top"}'` (tier "top" if strong, else "standard").
      b. Write the cover letter to
         `/Users/zach/claude/Career/applications/cover-letters/{company-slug}-{role-slug}.md`
-        using the `/apply` format, then
-        `... -m agent.store save-application --json '{"job_id":"…",
-        "cover_letter_path":"…"}'`.
+        using the `/apply` format. Then save-application WITH the letter text so the
+        dashboard can show it: write a temp JSON file with keys `job_id`,
+        `cover_letter_path` (absolute), and `cover_letter_body` (the full letter
+        text), then `... -m agent.store save-application --json-file /tmp/app.json`.
      c. **Warm path first.** Run `... -m agent.store warm-path --json
         '{"company":"<company>"}'`. If it returns anyone, Zach is already connected
         to them — prepend "Warm intro: connected to <name> (<role>)" to the pick's
