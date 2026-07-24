@@ -30,9 +30,35 @@ def _hunter(first, last, domain, key):
     return None
 
 
+def _apollo(first, last, domain, key):
+    """Apollo People Match. Returns a verified/likely work email when available."""
+    try:
+        payload = json.dumps({"first_name": first, "last_name": last,
+                              "domain": domain, "reveal_personal_emails": False}).encode()
+        req = urllib.request.Request(
+            "https://api.apollo.io/v1/people/match",
+            data=payload,
+            headers={"Content-Type": "application/json", "X-Api-Key": key})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            person = json.load(r).get("person", {}) or {}
+        email = person.get("email")
+        if email and "@" in email and "not_unlocked" not in email and "domain.com" not in email:
+            verified = person.get("email_status") == "verified"
+            return {"email": email, "source": "apollo",
+                    "confidence": "high" if verified else "medium"}
+    except Exception:
+        pass
+    return None
+
+
 def find_contact_email(first, last, domain, apollo_key=None, hunter_key=None) -> dict:
+    apollo_key = apollo_key or os.getenv("APOLLO_API_KEY")
     hunter_key = hunter_key or os.getenv("HUNTER_API_KEY")
-    # Apollo integration is added when a key exists; skipped here to stay free by default.
+    # Real finders first (best coverage), then Hunter, then a low-confidence pattern guess.
+    if apollo_key:
+        hit = _apollo(first, last, domain, apollo_key)
+        if hit:
+            return hit
     if hunter_key:
         hit = _hunter(first, last, domain, hunter_key)
         if hit:

@@ -8,6 +8,11 @@ Run all commands from `/Users/zach/claude/Career/job_monitor` using the venv
 python: `/Users/zach/.venv/bin/python`.
 
 ## Hard rules
+- **NO EM-DASHES OR EN-DASHES, EVER.** Never put the — or – character in any cover
+  letter, email, subject line, or any written output. This is absolute. Use a comma,
+  period, colon, or parentheses instead, and the word "to" for ranges ("45% to 95%",
+  never "45%–95%"). Before you save ANY cover letter or outreach body, re-read the
+  full text and replace every — and – you find. A single em-dash is a failure.
 - Never send email. Only draft (status stays 'drafted').
 - Filters: remote-only, stage seed→late-stage PRIVATE (exclude already-public
   companies). Weight earlier stages higher.
