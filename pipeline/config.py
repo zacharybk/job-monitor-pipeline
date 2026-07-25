@@ -42,12 +42,18 @@ MIN_MATCH_SCORE    = 5.0  # 0–10; used for display filtering
 # Copy profile.example.md to profile.md and fill in your background.
 # This is what Claude Haiku scores jobs against — be specific.
 _PROFILE_PATH = Path(__file__).parent.parent / "profile.md"
+_EXAMPLE_PATH = Path(__file__).parent.parent / "profile.example.md"
 if _PROFILE_PATH.exists():
     PROFILE_TEXT = _PROFILE_PATH.read_text()
+elif _EXAMPLE_PATH.exists():
+    # Never let a missing personal profile crash the whole pipeline (scraping does
+    # not need it; only scoring does). Fall back so scraping keeps running.
+    import warnings
+    warnings.warn("profile.md not found; falling back to profile.example.md. "
+                  "Scoring will be inaccurate until profile.md is restored.")
+    PROFILE_TEXT = _EXAMPLE_PATH.read_text()
 else:
-    raise FileNotFoundError(
-        "profile.md not found. Copy profile.example.md to profile.md and fill it in."
-    )
+    PROFILE_TEXT = ""  # scraping still runs; scoring is skipped/degraded
 
 # ── Relevance pre-filter ──────────────────────────────────────────────────────
 # Jobs must contain at least one INCLUDE keyword and zero EXCLUDE keywords.
