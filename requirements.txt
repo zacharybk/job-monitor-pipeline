@@ -5,9 +5,9 @@ pandas==2.2.3
 supabase==2.10.0
 python-dotenv==1.0.1
 anthropic==0.40.0
-openai==1.59.0
-google-api-python-client==2.198.0
-google-auth==2.56.1
-google-auth-oauthlib==1.4.0
-google-auth-httplib2==0.4.0
+openai>=1.58
+google-api-python-client>=2.150
+google-auth>=2.35
+google-auth-oauthlib>=1.2
+google-auth-httplib2>=0.2
 pytest==9.0.2
