@@ -6,6 +6,11 @@ cd "$(dirname "$0")"
 export PATH="/Users/zach/.local/bin:$PATH"   # ensure `claude` is found under launchd
 set -a; [ -f .env ] && . ./.env; set +a
 
+# The morning agent authenticates via the Claude subscription (claude.ai login), not
+# an API key. .env's ANTHROPIC_API_KEY is for the droplet scorer and is invalid here;
+# leaving it set makes `claude -p` try that key and fail (this broke every launchd run).
+unset ANTHROPIC_API_KEY ANTHROPIC_AUTH_TOKEN
+
 LOG="agent/morning_agent.log"
 MODE="${1:-}"
 echo "=== $(date '+%F %T') start (${MODE:-full}) ===" >> "$LOG"
