@@ -15,16 +15,24 @@ def infer_pattern_email(first: str, last: str, domain: str) -> str:
     return f"{first}@{domain}"
 
 
+_UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+       "(KHTML, like Gecko) Chrome/120.0 Safari/537.36")
+
+
 def _hunter(first, last, domain, key):
+    # Hunter's API sits behind Cloudflare and 403s (code 1010) without a browser
+    # User-Agent, so we set one explicitly.
     try:
         q = urllib.parse.urlencode(
             {"domain": domain, "first_name": first, "last_name": last, "api_key": key})
-        with urllib.request.urlopen(
-                f"https://api.hunter.io/v2/email-finder?{q}", timeout=15) as r:
+        req = urllib.request.Request(
+            f"https://api.hunter.io/v2/email-finder?{q}", headers={"User-Agent": _UA})
+        with urllib.request.urlopen(req, timeout=20) as r:
             data = json.load(r).get("data", {})
         if data.get("email"):
+            score = data.get("score") or 0
             return {"email": data["email"], "source": "hunter",
-                    "confidence": "high" if (data.get("score") or 0) >= 80 else "medium"}
+                    "confidence": "high" if score >= 80 else "medium"}
     except Exception:
         pass
     return None
