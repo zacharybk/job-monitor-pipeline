@@ -151,6 +151,7 @@ async function renderApp(demo){
         <button data-v="today">Today</button>
         <button data-v="pipeline">Pipeline</button>
         <button data-v="momentum">Momentum</button>
+        <button data-v="qa">QA</button>
       </nav>
     </header>
     <main id="main"><div class="empty">Loading…</div></main>
@@ -163,7 +164,7 @@ async function renderApp(demo){
 function paint(){
   app.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===view));
   const m=document.getElementById('main');
-  m.innerHTML = view==='today'?viewToday():view==='pipeline'?viewPipeline():viewMomentum();
+  m.innerHTML = view==='today'?viewToday():view==='pipeline'?viewPipeline():view==='momentum'?viewMomentum():viewQA();
   wireActions();
 }
 
@@ -295,6 +296,50 @@ function viewMomentum(){
   </div>`;
 }
 
+/* ---------- QA ---------- */
+async function loadQA(){
+  if(DEMO) return;
+  const r = await sb.rpc('qa_rollup', { days: 7 });
+  const since = new Date(Date.now() - 14*864e5).toISOString();
+  const j = await sb.from('jobs')
+    .select('title,company,url,match_score,reviewed_at,user_feedback, picks(user_decision)')
+    .not('reviewed_at','is',null).gte('reviewed_at', since)
+    .order('reviewed_at',{ascending:false}).limit(400);
+  cache.qa = { rollup: r.data||[], jobs: j.data||[] };
+  if(view==='qa') paint();
+}
+function qaDecision(j){
+  const pick = (j.picks||[])[0];
+  if(pick) return { label: pick.user_decision || 'picked', cls: pick.user_decision==='skip'?'rejected':'applied' };
+  const uf = j.user_feedback || '';
+  if(/^SKIP/i.test(uf)) return { label: 'skip · ' + uf.replace(/^SKIP:?\s*/i,'').slice(0,70), cls: 'rejected' };
+  return { label: 'reviewed', cls: 'drafted' };
+}
+function viewQA(){
+  const qa = cache.qa;
+  if(!qa){ loadQA(); return `<div class="card empty">Loading QA data…</div>`; }
+  const roll = `<div class="card"><h3 style="margin:0 0 4px">7-day funnel</h3>
+    <div class="scroll"><table>
+    <tr><th>Day</th><th>Scraped</th><th>Scored</th><th>Reviewed</th><th>Picked</th></tr>
+    ${qa.rollup.map(r=>`<tr><td>${esc(r.day)}</td><td>${r.scraped}</td>
+      <td>${r.scored==0?'<span style=\"color:var(--warn)\">0</span>':r.scored}</td>
+      <td>${r.reviewed}</td><td><b>${r.picked}</b></td></tr>`).join('')}
+    </table></div>
+    <p class="muted" style="font-size:12px;margin:8px 0 0">Scraped = new jobs in. Scored = droplet match-score (0 = scorer off). Reviewed = the agent judged it. Picked = surfaced to you.</p></div>`;
+  const byDay = {};
+  qa.jobs.forEach(j=>{ const d=(j.reviewed_at||'').slice(0,10); (byDay[d]=byDay[d]||[]).push(j); });
+  const days = Object.entries(byDay).map(([d,jobs])=>`<div class="card">
+    <h3 style="margin:0 0 8px">${esc(d)} · ${jobs.length} evaluated</h3>
+    <div class="scroll"><table><tr><th>Role</th><th>Score</th><th>Decision</th></tr>
+    ${jobs.map(j=>{ const dec=qaDecision(j);
+      const link = j.url?`<a href="${esc(j.url)}" target="_blank">${esc(j.company||'')}</a>`:esc(j.company||'');
+      return `<tr><td><b>${esc(j.title||'')}</b><br><span class="muted">${link}</span></td>
+        <td>${j.match_score!=null?j.match_score:'—'}</td>
+        <td><span class="st ${dec.cls}">${esc(dec.label)}</span></td></tr>`;
+    }).join('')}</table></div></div>`).join('');
+  return roll + (days || '<div class="card empty">No evaluated jobs in the last 14 days.</div>');
+}
+
 /* ---------- ACTIONS ---------- */
 function wireActions(){
   app.querySelectorAll('[data-act]').forEach(el=>el.onclick=async()=>{
@@ -321,7 +366,15 @@ function demoData(){
     picks:[{id:'p1',job_id:jid,tier:'top',fit_verdict:'apply',rank:1,reasoning:'Seed-stage AI CX company; you would be the first CX/ops hire — exact first-hire thesis.',fit_rubric:{stage:'High',comp:'Med',remote:'High',scope:'High',ai:'High',domain:'Med'},jobs:{title:'Head of Customer Experience',company:'ExampleAI',location:'Remote · US',url:'#'}}],
     outreach:[{id:'o1',job_id:jid,status:'drafted',sequence_step:1,subject:'Head of CX role at ExampleAI',body:"Hi Dana,\n\nI'm reaching out about your Head of CX role. I scaled support from 8 to 80 at DigitalOcean and built AI agents at Measured that automated 70% of a manual workflow. Would you have 20 minutes?\n\nThanks,\nZach",contacts:{name:'Dana Lee',role:'CEO',email:'dana@exampleai.com',company:'ExampleAI'}}],
     apps:[{id:'a1',job_id:jid,status:'drafted',cover_letter_body:'# ExampleAI — Head of Customer Experience\n\nHi ExampleAI Team,\n\nYour post says CX is a core differentiator, and that is exactly the kind of build I look for. I scaled support from 8 to 80 at DigitalOcean and deployed AI agents at Measured that automated 70% of a manual workflow.\n\nI would welcome the chance to talk.\n\nZach',jobs:{title:'Head of Customer Experience',company:'ExampleAI'}}],
-    activity:[{day:new Date().toISOString().slice(0,10),agent_ran_at:new Date().toISOString(),picks_made:1}]
+    activity:[{day:new Date().toISOString().slice(0,10),agent_ran_at:new Date().toISOString(),picks_made:1}],
+    qa:{
+      rollup:[{day:'2026-07-27',scraped:0,scored:0,reviewed:99,picked:1},{day:'2026-07-26',scraped:0,scored:0,reviewed:0,picked:0},{day:'2026-07-25',scraped:1417,scored:0,reviewed:2,picked:1}],
+      jobs:[
+        {title:'Head of Customer Experience',company:'ExampleAI',url:'#',match_score:null,reviewed_at:'2026-07-27T10:00:00Z',user_feedback:null,picks:[{user_decision:'pursue'}]},
+        {title:'Support Engineer',company:'BigPublicCorp',url:'#',match_score:null,reviewed_at:'2026-07-27T09:30:00Z',user_feedback:'SKIP: already public company (NASDAQ), wrong function',picks:[]},
+        {title:'Director, Customer Success (London)',company:'EuroSaaS',url:'#',match_score:null,reviewed_at:'2026-07-27T09:00:00Z',user_feedback:'SKIP: location-locked, not US-remote',picks:[]}
+      ]
+    }
   };
 }
 
