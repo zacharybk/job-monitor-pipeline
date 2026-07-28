@@ -23,7 +23,7 @@ RAPIDAPI_KEY = os.getenv("RAPIDAPI_KEY", "")  # required for yc_api source
 # then set DO_SCORING_MODEL in .env to the Sonnet 5 slug it lists.
 DO_INFERENCE_KEY      = os.getenv("DO_INFERENCE_KEY", "")
 DO_INFERENCE_BASE_URL = os.getenv("DO_INFERENCE_BASE_URL", "https://inference.do-ai.run/v1")
-DO_SCORING_MODEL      = os.getenv("DO_SCORING_MODEL", "anthropic-claude-4.6-sonnet")
+DO_SCORING_MODEL      = os.getenv("DO_SCORING_MODEL", "anthropic-claude-haiku-4.5")
 
 # Fallback: Anthropic direct (used only when DO_INFERENCE_KEY is unset).
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
