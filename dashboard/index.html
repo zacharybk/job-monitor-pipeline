@@ -149,6 +149,7 @@ async function renderApp(demo){
       </div>
       <nav>
         <button data-v="today">Today</button>
+        <button data-v="review">Review</button>
         <button data-v="pipeline">Pipeline</button>
         <button data-v="momentum">Momentum</button>
         <button data-v="qa">QA</button>
@@ -164,7 +165,7 @@ async function renderApp(demo){
 function paint(){
   app.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===view));
   const m=document.getElementById('main');
-  m.innerHTML = view==='today'?viewToday():view==='pipeline'?viewPipeline():view==='momentum'?viewMomentum():viewQA();
+  m.innerHTML = view==='today'?viewToday():view==='review'?viewReview():view==='pipeline'?viewPipeline():view==='momentum'?viewMomentum():viewQA();
   wireActions();
 }
 
@@ -190,8 +191,29 @@ function paintHealth(){
 }
 
 /* ---------- TODAY ---------- */
+function viewReview(){
+  const picks=(cache.picks||[]).filter(p=>p.fit_verdict==='maybe' && !p.user_decision);
+  if(!picks.length) return `<div class="card empty">Nothing to review right now.<br><span class="muted">Maybe-fit roles land here for a one-tap Apply or No.</span></div>`;
+  return `<div class="card" style="padding:12px 16px"><b>${picks.length}</b> <span class="muted">maybe-fit role${picks.length>1?'s':''} to triage. Apply builds the full package; No drops it and tunes the filter.</span></div>`
+    + picks.map(p=>{
+    const j=p.jobs||{};
+    return `<div class="card">
+      <div class="row">
+        <span class="company">${esc(j.company)}</span>
+        <span class="badge angle">maybe</span>
+        ${j.url?`<a href="${esc(j.url)}" target="_blank" style="margin-left:auto;font-size:12.5px">Open posting ↗</a>`:''}
+      </div>
+      <div class="title">${esc(j.title)} · <span class="muted">${esc(j.location||'')}</span></div>
+      ${p.reasoning?`<p class="reason">${esc(p.reasoning)}</p>`:''}
+      <div class="acts">
+        <button class="btn pri" data-act="pursue" data-job="${p.job_id}" data-pick="${p.id}">Apply</button>
+        <button class="btn sec" data-act="skip" data-pick="${p.id}">Not for me</button>
+      </div>
+    </div>`;
+  }).join('');
+}
 function viewToday(){
-  const picks=(cache.picks||[]).filter(p=>!p.user_decision||p.user_decision==='pursue');
+  const picks=(cache.picks||[]).filter(p=>p.fit_verdict!=='maybe' && (!p.user_decision||p.user_decision==='pursue'));
   if(!picks.length) return `<div class="card empty">No open picks right now.<br><span class="muted">The agent runs at 7am, or run <code>applyme</code> anytime.</span></div>`;
   return picks.map(p=>{
     const j=p.jobs||{};
@@ -349,6 +371,7 @@ function wireActions(){
     try{
       if(act==='applied'){ await sb.from('applications').update({status:'applied',applied_at:new Date().toISOString()}).eq('job_id',el.dataset.job);
         await sb.from('picks').update({user_decision:'applied',decided_at:new Date().toISOString()}).eq('job_id',el.dataset.job); toast('Marked applied'); }
+      if(act==='pursue'){ await sb.from('picks').update({user_decision:'pursue',decided_at:new Date().toISOString()}).eq('id',el.dataset.pick); toast('Queued — the agent builds the full package on its next run'); }
       if(act==='skip'){ const why=(prompt('Not a fit — why? (a word or two helps the agent learn: too senior, wrong location, comp, domain…)')||'').trim(); await sb.from('picks').update({user_decision:'skip',user_note:why,decided_at:new Date().toISOString()}).eq('id',el.dataset.pick); toast('Skipped — thanks, that tunes the agent'); }
       if(act==='sent'){ await sb.from('outreach').update({status:'sent',sent_at:new Date().toISOString()}).eq('id',el.dataset.out); toast('Marked sent — nice rep'); }
       if(act==='replied'){ await sb.from('outreach').update({status:'replied',reply_at:new Date().toISOString()}).eq('id',el.dataset.out); toast('A reply! 🎉'); }
@@ -363,7 +386,10 @@ function wireActions(){
 function demoData(){
   const jid='demo-job';
   return {
-    picks:[{id:'p1',job_id:jid,tier:'top',fit_verdict:'apply',rank:1,reasoning:'Seed-stage AI CX company; you would be the first CX/ops hire — exact first-hire thesis.',fit_rubric:{stage:'High',comp:'Med',remote:'High',scope:'High',ai:'High',domain:'Med'},jobs:{title:'Head of Customer Experience',company:'ExampleAI',location:'Remote · US',url:'#'}}],
+    picks:[
+      {id:'p1',job_id:jid,tier:'top',fit_verdict:'apply',rank:1,reasoning:'Seed-stage AI CX company; you would be the first CX/ops hire, exact first-hire thesis.',fit_rubric:{stage:'High',comp:'Med',remote:'High',scope:'High',ai:'High',domain:'Med'},jobs:{title:'Head of Customer Experience',company:'ExampleAI',location:'Remote · US',url:'#'}},
+      {id:'p2',job_id:'demo-maybe',tier:null,fit_verdict:'maybe',reasoning:'Revenue Operations Manager. RevOps can be real ops or sales-ops; worth your call before I package it.',jobs:{title:'Revenue Operations Manager',company:'GrowthCo',location:'Remote · US',url:'#'}}
+    ],
     outreach:[{id:'o1',job_id:jid,status:'drafted',sequence_step:1,subject:'Head of CX role at ExampleAI',body:"Hi Dana,\n\nI'm reaching out about your Head of CX role. I scaled support from 8 to 80 at DigitalOcean and built AI agents at Measured that automated 70% of a manual workflow. Would you have 20 minutes?\n\nThanks,\nZach",contacts:{name:'Dana Lee',role:'CEO',email:'dana@exampleai.com',company:'ExampleAI'}}],
     apps:[{id:'a1',job_id:jid,status:'drafted',cover_letter_body:'# ExampleAI — Head of Customer Experience\n\nHi ExampleAI Team,\n\nYour post says CX is a core differentiator, and that is exactly the kind of build I look for. I scaled support from 8 to 80 at DigitalOcean and deployed AI agents at Measured that automated 70% of a manual workflow.\n\nI would welcome the chance to talk.\n\nZach',jobs:{title:'Head of Customer Experience',company:'ExampleAI'}}],
     activity:[{day:new Date().toISOString().slice(0,10),agent_ran_at:new Date().toISOString(),picks_made:1}],
