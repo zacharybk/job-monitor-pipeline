@@ -73,8 +73,10 @@
   .st.drafted{background:var(--chip);color:var(--muted)}
   .st.applied,.st.sent{background:color-mix(in srgb,var(--brand) 15%,transparent);color:var(--brand)}
   .st.interviewing,.st.replied{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
-  .st.rejected,.st.closed,.st.bounced{background:color-mix(in srgb,var(--bad) 13%,transparent);color:var(--bad)}
+  .st.rejected,.st.closed,.st.bounced,.st.ghosted{background:color-mix(in srgb,var(--bad) 13%,transparent);color:var(--bad)}
   .st.awaiting{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+  .statuswrap{font-size:12.5px;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+  .statussel{font:inherit;font-size:13px;font-weight:600;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
   .empty{text-align:center;color:var(--muted);padding:34px 10px}
   .scroll{overflow-x:auto}
   /* login */
@@ -253,6 +255,7 @@ function coverLetterBlock(app){
   if(!app || !app.cover_letter_body) return '';
   return `<details class="cl"><summary>Cover letter</summary><pre>${esc(app.cover_letter_body)}</pre></details>`;
 }
+const OUTREACH_STATUSES=[['sent','awaiting reply'],['replied','replied'],['interviewing','interviewing'],['rejected','rejected'],['ghosted','ghosted'],['bounced','bounced']];
 function draftBlock(o){
   const c=o.contacts||{}; const s=o.status;
   const label=s==='sent'?'awaiting reply':s;
@@ -263,11 +266,9 @@ function draftBlock(o){
     <pre>${esc(o.body||'')}</pre>
     <div class="acts">
       <a class="btn sec" href="https://mail.google.com/mail/u/0/#drafts" target="_blank">Open in Gmail ↗</a>
-      ${s==='drafted'?`<button class="btn pri" data-act="sent" data-out="${o.id}">Mark sent</button>
-        <button class="btn sec" data-act="bounced" data-out="${o.id}">Bounced</button>`:''}
-      ${s==='sent'?`<button class="btn good" data-act="replied" data-out="${o.id}">Got a reply</button>
-        <button class="btn sec" data-act="bounced" data-out="${o.id}">Bounced</button>`:''}
-      ${(s==='replied'||s==='bounced')?`<button class="btn sec" data-act="reopen" data-out="${o.id}">Undo</button>`:''}
+      ${s==='drafted'
+        ? `<button class="btn pri" data-act="sent" data-out="${o.id}">Mark sent</button>`
+        : `<label class="statuswrap">Status: <select class="statussel" data-out="${o.id}">${OUTREACH_STATUSES.map(([v,l])=>`<option value="${v}" ${v===s?'selected':''}>${l}</option>`).join('')}</select></label>`}
     </div>
   </div>`;
 }
@@ -301,8 +302,8 @@ function viewMomentum(){
   const wk=startOfWeek(), mo=startOfMonth();
   const sentWeek=out.filter(o=>o.sent_at&&new Date(o.sent_at)>=wk).length;
   const appsWeek=apps.filter(a=>a.applied_at&&new Date(a.applied_at)>=wk).length;
-  const replies=out.filter(o=>o.status==='replied').length;
-  const interviews=apps.filter(a=>a.status==='interviewing').length;
+  const replies=out.filter(o=>['replied','interviewing','rejected'].includes(o.status)).length;
+  const interviews=new Set([...out.filter(o=>o.status==='interviewing').map(o=>o.job_id), ...apps.filter(a=>a.status==='interviewing').map(a=>a.job_id)].filter(Boolean)).size;
   const draftsReady=out.filter(o=>o.status==='drafted').length;
   const bar=(n,t)=>`<div class="bar"><i style="width:${Math.min(100,Math.round(n/t*100))}%"></i></div>`;
   return `<div class="stats">
@@ -380,6 +381,17 @@ function wireActions(){
       await loadAll(); paintHealth(); paint();
     }catch(e){ toast('Error: '+e.message); el.disabled=false; }
   });
+  app.querySelectorAll('.statussel').forEach(sel=>sel.onchange=async()=>{
+    if(DEMO){ toast('Demo mode — no changes saved'); return; }
+    const status=sel.value, id=sel.dataset.out;
+    const patch={status};
+    if(status==='replied'||status==='interviewing') patch.reply_at=new Date().toISOString();
+    try{
+      await sb.from('outreach').update(patch).eq('id',id);
+      toast(status==='interviewing'?'Interviewing! 🎉':status==='rejected'?'Marked rejected':status==='ghosted'?'Marked ghosted':'Updated to '+status);
+      await loadAll(); paint();
+    }catch(e){ toast('Error: '+e.message); }
+  });
 }
 
 /* ---------- DEMO DATA ---------- */
@@ -390,7 +402,7 @@ function demoData(){
       {id:'p1',job_id:jid,tier:'top',fit_verdict:'apply',rank:1,reasoning:'Seed-stage AI CX company; you would be the first CX/ops hire, exact first-hire thesis.',fit_rubric:{stage:'High',comp:'Med',remote:'High',scope:'High',ai:'High',domain:'Med'},jobs:{title:'Head of Customer Experience',company:'ExampleAI',location:'Remote · US',url:'#'}},
       {id:'p2',job_id:'demo-maybe',tier:null,fit_verdict:'maybe',reasoning:'Revenue Operations Manager. RevOps can be real ops or sales-ops; worth your call before I package it.',jobs:{title:'Revenue Operations Manager',company:'GrowthCo',location:'Remote · US',url:'#'}}
     ],
-    outreach:[{id:'o1',job_id:jid,status:'drafted',sequence_step:1,subject:'Head of CX role at ExampleAI',body:"Hi Dana,\n\nI'm reaching out about your Head of CX role. I scaled support from 8 to 80 at DigitalOcean and built AI agents at Measured that automated 70% of a manual workflow. Would you have 20 minutes?\n\nThanks,\nZach",contacts:{name:'Dana Lee',role:'CEO',email:'dana@exampleai.com',company:'ExampleAI'}}],
+    outreach:[{id:'o1',job_id:jid,status:'sent',sequence_step:1,subject:'Head of CX role at ExampleAI',body:"Hi Dana,\n\nI'm reaching out about your Head of CX role. I scaled support from 8 to 80 at DigitalOcean and built AI agents at Measured that automated 70% of a manual workflow. Would you have 20 minutes?\n\nThanks,\nZach",contacts:{name:'Dana Lee',role:'CEO',email:'dana@exampleai.com',company:'ExampleAI'}}],
     apps:[{id:'a1',job_id:jid,status:'drafted',cover_letter_body:'# ExampleAI — Head of Customer Experience\n\nHi ExampleAI Team,\n\nYour post says CX is a core differentiator, and that is exactly the kind of build I look for. I scaled support from 8 to 80 at DigitalOcean and deployed AI agents at Measured that automated 70% of a manual workflow.\n\nI would welcome the chance to talk.\n\nZach',jobs:{title:'Head of Customer Experience',company:'ExampleAI'}}],
     activity:[{day:new Date().toISOString().slice(0,10),agent_ran_at:new Date().toISOString(),picks_made:1}],
     qa:{
