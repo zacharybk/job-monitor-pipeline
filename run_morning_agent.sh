@@ -21,6 +21,8 @@ PROMPT="$(cat agent/PROMPT.md)"
 TOOLS="Bash,Read,Write,WebSearch,WebFetch,Skill"
 TOOLS="$TOOLS,mcp__lorikeet-cx-jobs__search_jobs,mcp__lorikeet-cx-jobs__get_job"
 TOOLS="$TOOLS,mcp__lorikeet-cx-jobs__get_featured_jobs,mcp__lorikeet-cx-jobs__get_stats"
+TOOLS="$TOOLS,mcp__speedrun-talent-network__search_jobs,mcp__speedrun-talent-network__get_job"
+TOOLS="$TOOLS,mcp__speedrun-talent-network__list_companies,mcp__speedrun-talent-network__get_company"
 
 if claude -p "$PROMPT" --allowedTools "$TOOLS" >> "$LOG" 2>&1; then
   echo "=== $(date '+%F %T') ok ===" >> "$LOG"

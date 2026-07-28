@@ -40,12 +40,17 @@ python: `/Users/zach/.venv/bin/python`.
    `/Users/zach/.venv/bin/python -m agent.store get-jobs-to-review --limit 100`.
    Parse the JSON array of jobs (id, title, company, location, description, url).
 
-1b. **Discovery — Lorikeet CX+AI jobs board (do this first, it's the highest-signal source).**
-   Use the `lorikeet-cx-jobs` MCP tools: call `search_jobs` for US-remote senior
-   CX/AI leadership roles (try queries like "Head of Customer Success", "VP
-   Customer Experience", "Head of Support", region US/remote, senior seniority),
-   and `get_featured_jobs`. For each result that isn't already in Supabase, insert
-   it so it can be picked:
+1b. **Discovery — curated MCP boards (do this first, highest-signal supplements).**
+   Query BOTH MCP boards and pull broadly, not just a narrow slice:
+   - `lorikeet-cx-jobs`: `search_jobs` for US-remote CX/CS/Support/Operations roles
+     across levels (queries like "Head of Customer Success", "Customer Success Manager",
+     "Business Operations", "Head of Support"), plus `get_featured_jobs`.
+   - `speedrun-talent-network`: `search_jobs` for the same title set, and use
+     `list_companies` / `get_company` to pull roles from ALL hiring companies in the
+     network, not only a16z portfolio companies. Retry once if it returns a transient
+     "DB overloaded" error.
+   These are supplements. The broad base is the droplet scrape (bluedoor + ~800 boards);
+   the MCPs add curated coverage on top. For each result not already in Supabase, insert it:
    `/Users/zach/.venv/bin/python -m agent.store add-job --json-file /tmp/job.json`
    (write url, title, company, location, source:"lorikeet" to the file first;
    add-job dedupes by URL and returns the job id). Then treat these jobs exactly
