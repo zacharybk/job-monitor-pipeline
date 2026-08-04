@@ -24,11 +24,20 @@ TOOLS="$TOOLS,mcp__lorikeet-cx-jobs__get_featured_jobs,mcp__lorikeet-cx-jobs__ge
 TOOLS="$TOOLS,mcp__speedrun-talent-network__search_jobs,mcp__speedrun-talent-network__get_job"
 TOOLS="$TOOLS,mcp__speedrun-talent-network__list_companies,mcp__speedrun-talent-network__get_company"
 
-if claude -p "$PROMPT" --allowedTools "$TOOLS" >> "$LOG" 2>&1; then
+# Retry: transient "Connection closed mid-response" errors were killing whole runs.
+ok=0
+for attempt in 1 2 3; do
+  if claude -p "$PROMPT" --allowedTools "$TOOLS" >> "$LOG" 2>&1; then
+    ok=1; break
+  fi
+  echo "=== $(date '+%F %T') attempt $attempt failed, retrying in 15s ===" >> "$LOG"
+  sleep 15
+done
+if [ "$ok" = 1 ]; then
   echo "=== $(date '+%F %T') ok ===" >> "$LOG"
   [ -n "${HEALTHCHECK_URL:-}" ] && curl -fsS -m 10 "${HEALTHCHECK_URL}" >/dev/null 2>&1 || true
 else
-  echo "=== $(date '+%F %T') FAILED ===" >> "$LOG"
+  echo "=== $(date '+%F %T') FAILED (3 attempts) ===" >> "$LOG"
   [ -n "${HEALTHCHECK_URL:-}" ] && curl -fsS -m 10 "${HEALTHCHECK_URL}/fail" >/dev/null 2>&1 || true
   exit 1
 fi
